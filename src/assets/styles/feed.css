@@ -1,0 +1,137 @@
+.app-container.feed-page {
+  display: flex;
+  background-color: white;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.create-post-container {
+  margin-bottom: 20px;
+  background: white;
+  padding: 10px 16px;
+  border: 1px solid #ddd;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+}
+
+.create-post-form {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.create-post-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+  padding: 8px 12px;
+}
+
+.create-post-button {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 12px;
+}
+
+.posts-container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.post-card {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.post-avatar, .reply-avatar {
+  width: 36px;
+  height: 36px;
+  background-color: #e5e7eb;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #374151;
+}
+
+.post-author, .reply-author {
+  font-weight: bold;
+}
+
+.post-time, .reply-time {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.post-content {
+  margin-top: 12px;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.post-reply-button {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+}
+
+.replies-section {
+  margin-top: 12px;
+  padding-left: 20px;
+  border-left: 2px solid #e5e7eb;
+}
+
+.reply-card {
+  margin-top: 8px;
+  background: #f9fafb;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.reply-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+/* responsive */
+@media (max-width: 768px) {
+  .feed-container {
+    padding: 1rem;
+  }
+
+  .create-post-button {
+    width: 100%;
+  }
+
+  .post-card {
+    padding: 1rem;
+  }
+}

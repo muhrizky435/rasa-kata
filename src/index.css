@@ -1,151 +1,34 @@
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #fdeef1;
+body {
+  font-family: 'Josefin Sans', sans-serif;
+}
+a {
+  text-decoration: none;
 }
 
-.login-card {
-  display: flex;
-  width: 900px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-}
-
-.login-left, .login-right {
-  padding: 40px;
-  width: 50%;
-}
-
-.login-left {
+/* MAIN CONTENT STYLING */
+.main-content {
+  flex: 1;
+  margin-left: 250px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-color: #fff;
+  background-color: #f9fafb;
 }
-
-.logo {
-  width: 120px;
-  margin-bottom: 30px;
+.page-header {
+  margin-bottom: 24px;
 }
-
-.welcome-title {
+.page-title {
   font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.welcome-text {
-  font-size: 14px;
+  font-weight: 600;
   color: #333;
-  margin-bottom: 30px;
 }
-
-.login-form .input-group {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  padding: 10px;
-  background: #f9f9f9;
-}
-
-.login-form .input-group i {
-  margin-right: 10px;
-  color: purple;
-}
-
-.login-form .input-group input {
-  border: none;
-  background: transparent;
+.content-area {
   flex: 1;
-  font-size: 14px;
-  outline: none;
-}
-
-.eye-icon {
-  cursor: pointer;
-}
-
-.forgot-link {
-  font-size: 12px;
-  color: #6b46c1;
-  text-decoration: underline;
-  margin-bottom: 20px;
-  display: inline-block;
-}
-
-.login-btn {
-  width: 100%;
-  padding: 12px;
-  background-color: #2d3748;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.register-text {
-  font-size: 14px;
-  text-align: center;
-  margin-top: 20px;
-}
-
-.register-link {
-  color: #6b46c1;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.login-right {
-  background-color: #1a1a1a;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.rocket-img {
-  max-width: 100%;
-  height: auto;
-}
-
-
-/* responsive */
-@media (max-width: 768px) {
-  .login-card {
-    flex-direction: column;
-    width: 90%;
-  }
-
-  .login-left, .login-right {
-    width: 100%;
-    padding: 20px;
-  }
-
-  .login-right {
-    order: -1; /* Ilustrasi ditampilkan di atas pada layar kecil */
-    padding-bottom: 0;
-  }
-
-  .rocket-img {
-    max-height: 200px;
-    object-fit: contain;
-  }
-
-  .welcome-title {
-    font-size: 20px;
-  }
-
-  .login-form .input-group input {
-    font-size: 13px;
-  }
-
-  .login-btn {
-    font-size: 14px;
-  }
+  max-width: 768px;
+  margin: 0 auto;
+  width: 100%;
 }

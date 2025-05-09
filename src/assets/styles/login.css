@@ -1,0 +1,166 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f9fafb;
+}
+
+.login-card {
+  display: flex;
+  width: 900px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.login-left, .login-right {
+  padding: 40px;
+  width: 50%;
+}
+
+.login-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 30px;
+}
+
+.welcome-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.welcome-text {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.login-form .input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  padding: 10px;
+  background: #f9f9f9;
+}
+
+.login-form .input-group i {
+  margin-right: 10px;
+  color: purple;
+}
+
+.login-form .input-group input {
+  border: none;
+  background: transparent;
+  flex: 1;
+  font-size: 14px;
+  outline: none;
+}
+
+.eye-icon {
+  cursor: pointer;
+}
+
+.forgot-link {
+  font-size: 12px;
+  color: #6b46c1;
+  text-decoration: underline;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #2d3748;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.register-text {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.register-link {
+  color: #6b46c1;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.login-right {
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rocket-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 10px 10px 10px 40px;
+  font-size: 14px;
+}
+
+.input-icon {
+  position: absolute;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.login-form input:focus {
+  border: 1px solid #6b46c1;
+  background-color: #fff;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .login-card {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .login-left, .login-right {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .login-right {
+    align-items: center;
+  }
+
+  .login-form {
+    width: 100%;
+  }
+}
