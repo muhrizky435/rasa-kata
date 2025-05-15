@@ -1,17 +1,36 @@
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import "../assets/styles/login.css";
 import rocketImg from "../assets/img/rocket.png";
 import rasaKataImg from "../assets/img/logo-rasa-kata.png";
 import lockIcon from "../assets/img/lockIcon.png";
 import keyIcon from "../assets/img/keyIcon.png";
 
-export default function Login() {
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const { login, isAuthenticated, loading } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  // Redirect to feed if already logged in
+  React.useEffect(() => {
+    if (isAuthenticated && !loading) {
+      navigate("/feed");
+    }
+  }, [isAuthenticated, loading, navigate]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Logika login
-    navigate("/");
+    setErrorMessage("");
+
+    try {
+      await login({ email, password });
+      navigate("/feed-detail");
+    } catch (error) {
+      setErrorMessage(error.message || "Login failed. Please try again.");
+    }
   };
 
   return (
@@ -27,14 +46,28 @@ export default function Login() {
             Mari lanjutkan perjalanan memahami dirimu sendiri.
           </p>
 
-          <form onSubmit={handleLogin} className="login-form">
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
+
+          <form onSubmit={handleSubmit} className="login-form">
             <div className="input-group">
               <img src={lockIcon} alt="Lock Icon" className="input-icon" />
-              <input type="email" placeholder="Email" required />
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
             </div>
             <div className="input-group">
               <img src={keyIcon} alt="Key Icon" className="input-icon" />
-              <input type="password" placeholder="Password" required />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
               <span className="eye-icon">👁️</span>
             </div>
 
@@ -42,16 +75,20 @@ export default function Login() {
               Lupa Password?
             </a>
 
-            <button type="submit" className="login-btn">
-              Login
+            <button
+              type="submit"
+              className="login-btn"
+              disabled={loading}
+            >
+              {loading ? "Logging in..." : "Login"}
             </button>
           </form>
 
           <p className="register-text">
             Belum punya akun?{" "}
-            <a href="#" className="register-link">
+            <Link to="/register" className="register-link">
               Daftar di sini
-            </a>
+            </Link>
           </p>
         </div>
 
@@ -62,4 +99,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default Login;

@@ -1,52 +1,81 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import "../assets/styles/feed.css";
 import Sidebar from "../components/Sidebar";
+import postService from "../services/postService";
+import { formatRelativeTime } from "../utils/timeUtils";
+import { Link } from "react-router-dom";
+import { Loading } from "../components/Loading";
+import logoIcon from "../assets/img/logoIcon.png";
 
 const Feed = () => {
   const [postContent, setPostContent] = useState("");
+  const [posts, setPosts] = useState([]);
+  const [bestPosts, setBestPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      userId: 101,
-      username: "HanifAnonim",
-      createdAt: "2 jam lalu",
-      content:
-        "Why are the poorest states in America nearly all Republican? Why are the richest states nearly all Democrat?",
-      replies: [
-        {
-          id: 11,
-          userId: 202,
-          username: "PhillyBuck",
-          createdAt: "1 jam lalu",
-          content:
-            "Aren't the poorest republican states highest on the welfare list? They detest the people who are keeping their lights on.",
-        },
-      ],
-    },
-  ]);
+  // Fetch all posts when component mounts
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        setIsLoading(true);
+        const data = await postService.getAllPosts();
+        const posts = data.data;
 
-  const handlePostSubmit = (e) => {
-    e.preventDefault();
-    if (postContent.trim() === "") return;
+        const sortedPosts = posts.sort((a, b) => b.commentsCount - a.commentsCount);
+        setBestPosts([sortedPosts[0], sortedPosts[1], sortedPosts[2]]);
 
-    const newPost = {
-      id: Date.now(),
-      userId: 999, // bisa diganti sesuai user login
-      username: "Hai, Hanifan!",
-      createdAt: "baru saja",
-      content: postContent,
-      replies: [],
+        setPosts(posts);
+        setError(null);
+      } catch (err) {
+        console.error("Error fetching posts:", err);
+        setError("Failed to load posts. Please try again later.");
+      } finally {
+        setIsLoading(false);
+      }
     };
 
-    setPosts([newPost, ...posts]);
-    setPostContent("");
+    fetchPosts();
+  }, []);
+
+  const handlePostSubmit = async (e) => {
+    e.preventDefault();
+
+    if (postContent.trim() === "") return;
+
+    try {
+      setIsLoading(true);
+      const storyData = {
+        content: postContent,
+      };
+
+      // Submit the new post through the API
+      const newPost = await postService.postStory(storyData);
+
+      // Update the UI with the new post
+      setPosts([newPost, ...posts]);
+      setPostContent("");
+      setIsLoading(false);
+    } catch (err) {
+      console.error("Error creating post:", err);
+      setIsLoading(false);
+      // You might want to show an error message to the user
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="app-container feed-page">
       <Sidebar />
       <main className="main-content">
+      <div className="logo-container">
+        <div className="logo">
+          <img src={logoIcon} alt="Logo" className="logo-icon" />
+          <span className="logo-text">RasaKata</span>
+        </div>
+      </div>
+        <h2 className="page-title">Curhat Anonim</h2>
         {/* Post Input */}
         <div className="create-post-container">
           <form onSubmit={handlePostSubmit} className="create-post-form">
@@ -62,45 +91,97 @@ const Feed = () => {
             </button>
           </form>
         </div>
+        {error && <p className="error-message">{error}</p>}
 
         {/* Posts */}
-        <div className="posts-container">
-          {posts.map((post) => (
-            <div key={post.id} className="post-card">
-              <div className="post-header">
-                <div className="post-avatar">{post.username[0]}</div>
-                <div>
-                  <div className="post-author">{post.username}</div>
-                  <div className="post-time">{post.createdAt}</div>
-                </div>
-              </div>
-              <div className="post-content">{post.content}</div>
-              <div className="post-footer">
-                <button className="post-reply-button">
-                  {post.replies.length} Balasan
-                </button>
-              </div>
-
-              {/* Replies */}
-              {post.replies.length > 0 && (
-                <div className="replies-section">
-                  {post.replies.map((reply) => (
-                    <div key={reply.id} className="reply-card">
-                      <div className="reply-header">
-                        <div className="reply-avatar">{reply.username[0]}</div>
-                        <div>
-                          <div className="reply-author">{reply.username}</div>
-                          <div className="reply-time">{reply.createdAt}</div>
+          {isLoading ? (
+            <Loading />
+          ) : error ? (
+            <div className="error-message">{error}</div>
+          ) : posts.length === 0 ? (
+            <div className="no-posts">No posts yet. Be the first to share!</div>
+          ) : (
+                  <div className="posts-container">
+                    <div className="main-posts">
+                    <h3>All posts</h3>
+                      {posts.map((post) => (
+                        <div key={post.id} className="post-card">
+                          <div className="post-header">
+                            <div className="post-avatar">
+                              {post.username ? post.username[0] : "?"}
+                            </div>
+                            <div>
+                              <div className="post-author">Anonymous</div>
+                              <div className="post-time">
+                                {formatRelativeTime(post.created_at)}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="post-content">{post.content}</div>
+                          <div className="post-footer">
+                            <Link to={`/feed/${post.id}`}>
+                              <button className="post-reply-button">
+                                {post.commentsCount} balasan
+                              </button>
+                            </Link>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="side-posts">
+                      <div className="best-posts">
+                        <h3>Most hot posts</h3>
+                        {bestPosts.map((post) => (
+                        <div key={post.id} className="post-card">
+                          <div className="post-header">
+                            <div className="post-avatar">
+                              {post.username ? post.username[0] : "?"}
+                            </div>
+                            <div>
+                              <div className="post-author">Anonymous</div>
+                              <div className="post-time">
+                                {formatRelativeTime(post.created_at)}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="post-content">{post.content}</div>
+                          <div className="post-footer">
+                            <Link to={`/feed/${post.id}`}>
+                              <button className="post-reply-button">
+                                {post.commentsCount} balasan
+                              </button>
+                            </Link>
+                          </div>
+                        </div>
+                      ))}
+                      </div>
+                      <div className="my-posts">
+                        <h3>My posts</h3>
+                        <div className="post-card">
+                          <div className="post-header">
+                            <div className="post-avatar">
+                              ?
+                            </div>
+                            <div>
+                              <div className="post-author">Anonymous</div>
+                              <div className="post-time">
+                                4 jam yang lalu
+                              </div>
+                            </div>
+                          </div>
+                          <div className="post-content">fkfsdfsdkjfkdjskj</div>
+                          <div className="post-footer">
+                            <Link to={`/feed/1`}>
+                              <button className="post-reply-button">
+                                34 balasan
+                              </button>
+                            </Link>
+                          </div>
                         </div>
                       </div>
-                      <div className="reply-content">{reply.content}</div>
                     </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+                  </div>
+                )}
       </main>
     </div>
   );

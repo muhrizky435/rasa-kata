@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/styles/sidebar.css";
 import { Link, useLocation } from "react-router-dom";
 import logoIcon from "../assets/img/logoIcon.png";
@@ -13,9 +13,41 @@ import RightIcon from "../assets/img/rightIcon.png";
 const Sidebar = () => {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
-
   const [collapsed, setCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
   const toggleSidebar = () => setCollapsed(!collapsed);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  if (isMobile) {
+    return (
+      <div className="mobile-bottom-nav">
+        <div className="mobile-nav-menu">
+          <Link to="/dashboard" className={`mobile-menu-item ${isActive("/dashboard") ? "active" : ""}`}>
+            <img src={dashboardIcon} alt="Dashboard" />
+          </Link>
+
+          <Link to="/curhat" className={`mobile-menu-item ${isActive("/curhat") ? "active" : ""}`}>
+            <img src={curhatIcon} alt="Curhat" />
+          </Link>
+
+          <Link to="/jejak" className={`mobile-menu-item ${isActive("/jejak") ? "active" : ""}`}>
+            <img src={jejakIcon} alt="Jejak" />
+          </Link>
+
+          <Link to="/feed" className={`mobile-menu-item ${isActive("/feed") ? "active" : ""}`}>
+            <img src={unggahIcon} alt="Unggah" />
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`sidebar ${collapsed ? "collapsed" : ""}`}>
@@ -58,12 +90,6 @@ const Sidebar = () => {
             </div>
             <span className="menu-text">Curhat</span>
           </Link>
-          {!collapsed && (
-            <div className="submenu">
-              <div className="submenu-new">+ Baru</div>
-              <div className="submenu-preview">previous chat preview...</div>
-            </div>
-          )}
         </div>
 
         <div className="menu-item">
@@ -80,8 +106,8 @@ const Sidebar = () => {
 
         <div className="menu-item">
           <Link
-            to="/unggah"
-            className={`menu-link ${isActive("/unggah") ? "active" : ""}`}
+            to="/feed"
+            className={`menu-link ${isActive("/feed") ? "active" : ""}`}
           >
             <div className="icon-container">
               <img src={unggahIcon} alt="Unggah Icon" />

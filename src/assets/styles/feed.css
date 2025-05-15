@@ -2,7 +2,23 @@
   display: flex;
   background-color: white;
   min-height: 100vh;
-  font-family: Arial, sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  padding-bottom: 80px;
+  transition: padding-left 0.3s ease;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: none;
 }
 
 .create-post-container {
@@ -41,17 +57,32 @@
 }
 
 .posts-container {
-  width: 100%;
-  max-width: 1000px;
   display: flex;
-  flex-direction: column;
+  width: 100%;
   gap: 16px;
+  flex-direction: column;
 }
+
+.main-posts {
+  width: 100%;
+}
+
+.side-posts {
+  width: 100%;
+}
+
+.best-posts {
+  margin-bottom: 20px;
+}
+
 .post-card {
   background: white;
   border-radius: 10px;
   padding: 16px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  margin-bottom: 16px;
+  
+  overflow: hidden;
 }
 
 .post-header {
@@ -101,37 +132,85 @@
   padding: 0;
 }
 
-.replies-section {
-  margin-top: 12px;
-  padding-left: 20px;
-  border-left: 2px solid #e5e7eb;
-}
-
-.reply-card {
+.error-message {
+  color: #ef4444;
+  font-size: 14px;
   margin-top: 8px;
-  background: #f9fafb;
-  padding: 10px;
-  border-radius: 8px;
+  font-weight: 500;
 }
 
-.reply-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+@media (min-width: 769px) {
 
-
-/* responsive */
-@media (max-width: 768px) {
-  .feed-container {
-    padding: 1rem;
+  .main-content {
+    padding-left: 250px;
+    padding-bottom: 20px;
   }
 
-  .create-post-button {
-    width: 100%;
+  .posts-container {
+    flex-direction: row;
+  }
+
+  .main-posts {
+    width: 65%;
+  }
+
+  .side-posts {
+    width: 35%;
+  }
+}
+
+@media (max-width: 768px) {
+  .create-post-container {
+    border-radius: 12px;
+    margin: 0 16px 16px;
+  }
+
+  
+
+  .post-card {
+    margin: 0 16px;
+  }
+
+  .best-posts,
+  .my-posts {
+    margin: 0 16px;
+  }
+
+  .side-posts {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .create-post-input {
+    max-width: 200px;
+  }
+
+  .logo {
+    display: flex;
+    width: 300px;
+    align-items: center;
+    justify-items: center;
+  }
+
+  .post-reply-button {
+    font-size: 12px;
+  }
+
+  .post-content {
+    font-size: 14px;
+    
   }
 
   .post-card {
-    padding: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    
+  }
+
+  .page-title {
+    font-size: 1.5rem;
   }
 }
