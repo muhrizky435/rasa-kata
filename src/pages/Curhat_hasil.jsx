@@ -1,67 +1,67 @@
-import React from 'react';
 import "../assets/styles/curhat_hasil.css";
-import Sidebar from '../components/Sidebar';
-import Group from '../assets/img/Group.png';
+import translateEmotionCode from "../utils/translateEmotionCode";
+import getVideoTitle from "../utils/getVideoTitle";
+import { useEffect, useState } from "react";
 
+function CurhatHasil({ emotionData }) {
+  const [videoTitle, setVideoTitle] = useState([]);
+  const [embeddedFrames, setEmbeddedFrames] = useState([]);
 
-const forestImage = "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&q=80&w=300&h=300";
+  useEffect(() => {
+    const getVideoTitleFromData = async () => {
+      const titles = [];
+      const frames = [];
 
-function CurhatHasil() {
+      for (let index = 0; index < emotionData.feedbackRecommendation.length; index++) {
+        const data = await getVideoTitle(emotionData.feedbackRecommendation[index].youtube_link);
+        titles.push(data.title);
+        frames.push(data.html);
+      }
+      setVideoTitle(titles);
+      setEmbeddedFrames(frames);
+    };
+    if (emotionData && emotionData.feedbackRecommendation.length > 0) {
+      setVideoTitle([]);
+      setEmbeddedFrames([]);
+      getVideoTitleFromData();
+    }
+  }, [emotionData]);
+
   return (
-    <div className="app-container">
-      <Sidebar />
-
-      <main className="main-content">
-        {/* Header */}
-        <header className="page-header">
-          <h1 className="page-title">Mulai Curhat</h1>
-        </header>
-
-        {/* Content Area */}
-        <div className="content-area results-area">
-          {/* Emotion Result */}
-          <div className="emotion-result">
-            <p>
-              Kami mendeteksi bahwa saat ini anda sedang merasakan
-              <span className="emotion-highlight"> cemas</span>
-            </p>
-          </div>
-
-          {/* Recommendation Intro */}
-          <div className="recommendation-header">
-            <p>Berikut rekomendasi video YouTube yang sesuai untuk membantumu!</p>
-          </div>
-
-          {/* Video Recommendations */}
-          <div className="video-recommendations">
-            {[1, 2, 3].map((_, index) => (
-              <div className="video-card" key={index}>
-                <div className="video-thumbnail">
-                  <img src={forestImage} alt="Video thumbnail" />
-                </div>
-                <div className="video-title">
-                  <a href="#">Judul Video Motivasi {index + 1}</a>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Chat Input */}
-          <div className="input-container">
-            <div className="input-wrapper">
-              <div className="input-inner">
-                <input
-                  type="text"
-                  className="chat-input"
-                  placeholder="Tulis curhatanmu di sini..."
-                />
-                  <img src={Group} alt="icon Send" className="send-button" title="Kirim" />
-              </div>
-            </div>
-          </div>
+    <>
+      {/* Content Area */}
+      <div className="content-area results-area">
+        {/* Emotion Result */}
+        <div className="emotion-result">
+          <p>
+            Kami mendeteksi bahwa saat ini anda sedang merasakan
+            <span className="emotion-highlight">{` ${translateEmotionCode(emotionData.emotionCode)}`}</span>
+          </p>
         </div>
-      </main>
-    </div>
+
+        {/* Recommendation Intro */}
+        <div className="recommendation-header">
+          <p>Berikut rekomendasi video YouTube yang sesuai untuk membantumu!</p>
+        </div>
+
+        {/* Video Recommendations */}
+        <div className="video-recommendations">
+          {emotionData.feedbackRecommendation.map((recommendation, index) => (
+            <div key={index} className="frame-container">
+              {embeddedFrames[index] && (
+                <div
+                  className="embedded-frame"
+                  dangerouslySetInnerHTML={{ __html: embeddedFrames[index] }}
+                />
+              )}
+              <p className="video-title"><a href={recommendation.youtube_link} target="_blank" rel="noopener noreferrer">{videoTitle[index]}</a></p>
+            </div>
+          ))
+          }
+        </div>
+
+      </div>
+    </>
   );
 }
 

@@ -1,22 +1,60 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import "../assets/styles/curhat.css";
 import ConcentricCircles from '../components/Circles';
 import Group from '../assets/img/Group.png';
+import CurhatHasil from './Curhat_hasil';
+import emotionService from '../services/emotionService';
+import { Loading } from '../components/Loading';
+import { Logo } from '../components/Logo';
 
 function CurhatPage() {
-  const handleSendMessage = (message) => {
-    console.log("Sending message:", message);
-    // LOGIKA KIRIM PESAN
+
+  const [story, setStory] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isResult, setIsResult] = useState(false);
+  const [emotionData, setEmotionData] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+      const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+      return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
+    if (story.trim() === "") return;
+    try {
+      setIsLoading(true);
+      const response = await emotionService.predictEmotion(story);
+      setEmotionData(response.data);
+      console.log("Emotion data:", response.data);
+      setIsResult(true);
+      setIsLoading(false);
+      setStory("");
+    } catch (error) {
+      console.log("Error predicting emotion:", error);
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
+    }
+
+
+
   };
 
   return (
     <div className="app-container curhat-page">
       <Sidebar />
       <main className="main-content">
+        {isMobile && (<Logo />)}
         <header className="page-header">
           <h1 className="page-title">Mulai Curhat</h1>
         </header>
+        {isResult ? (isLoading ? <Loading /> : <CurhatHasil emotionData={emotionData} />) : 
+        
         <div className="content-area">
           <div>
             <ConcentricCircles />
@@ -26,21 +64,25 @@ function CurhatPage() {
           <h2 className="prompt-text">
             Ceritakan Masalahmu
           </h2>
+        </div>}
 
-          {/* Chat Input Box */}
-          <div className="input-container">
+        {/* Chat Input Box */}
+          <form className="input-container" onSubmit={handleSendMessage}>
             <div className="input-wrapper">
               <div className="input-inner">
                 <input
                   type="text"
                   className="chat-input"
+                  value={story}
+                  onChange={(e) => setStory(e.target.value)}
                   placeholder="Tulis curhatanmu di sini..."
                 />
-                <img src={Group} alt="icon Send" className="send-button" title="Kirim" />
+                <button type="submit" className='submit-button' >
+                  <img src={Group} alt="icon Send" className="send-button" title="Kirim" />
+                </button>
               </div>
             </div>
-          </div>
-        </div>
+          </form>
       </main>
     </div>
   );

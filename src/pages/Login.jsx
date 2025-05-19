@@ -27,7 +27,7 @@ const Login = () => {
 
     try {
       await login({ email, password });
-      navigate("/feed-detail");
+      navigate("/feed");
     } catch (error) {
       setErrorMessage(error.message || "Login failed. Please try again.");
     }

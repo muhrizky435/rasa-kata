@@ -1,7 +1,7 @@
 .app-container {
   display: flex;
   min-height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
 }
 .emotion-result {
   background-color: #e2e4e5;
@@ -29,7 +29,15 @@
   gap: 20px;
   flex-wrap: wrap;
   margin-bottom: 32px;
+  margin-top: 32px;
 }
+
+.frame-container p {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
 .video-card {
   width: 30%;
   min-width: 180px;

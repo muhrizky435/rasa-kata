@@ -1,19 +1,28 @@
 import { useState, useEffect } from "react";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "../assets/styles/feed.css";
 import Sidebar from "../components/Sidebar";
-import AuthContext from "../contexts/AuthContext";
 import postService from "../services/postService";
 import { formatRelativeTime } from "../utils/timeUtils";
 import { Loading } from "../components/Loading";
+import { Logo } from "../components/Logo";
 
 const FeedDetail = () => {
   const [post, setPost] = useState({});
   const [comment, setComment] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const { id } = useParams();
+
+  // Check if the screen size is mobile
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Fetch all posts when component mounts
   useEffect(() => {
@@ -59,10 +68,80 @@ const FeedDetail = () => {
     }
   }
 
+  if (isMobile) {
+    return (<div>
+      <Sidebar />
+      <main className="mobile-main-content">
+        <Logo />
+
+        <h2 className="mobile-page-title">Curhatan 'username'</h2>
+        {isLoading ? (
+          <Loading />) : error ? (
+            <div className="error-message">{error}</div>) : (
+          <div className="mobile-post-detail-container">
+            <div className="mobile-post-card">
+              <div className="mobile-post-header">
+                <div className="mobile-post-avatar">?</div>
+                <div>
+                  <div className="mobile-post-author">Anonymous</div>
+                  <div className="mobile-post-time">{formatRelativeTime(post.created_at)}</div>
+                </div>
+              </div>
+              <div className="mobile-post-content">{post.content}</div>
+            </div>
+            
+            <div className="mobile-replies-header">Balasan</div>
+            <hr />
+
+            <div className="mobile-posts-comments-container">
+              {post.comments.length === 0 ? (
+                <div className="mobile-no-comments-message">Belum ada balasan, jadilah orang pertama yang dapat mendengarkan cerita orang ini.</div>
+              ) : (
+                post.comments.map((comment) => (
+                  <div key={comment.id} className="mobile-post-card">
+                    <div className="mobile-post-header">
+                      <div className="mobile-post-avatar">?</div>
+                      <div>
+                        <div className="mobile-post-author">Anonymous</div>
+                        <div className="mobile-post-time">{formatRelativeTime(comment.created_at)}</div>
+                      </div>
+                    </div>
+                    <div className="mobile-post-content">{comment.content}</div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        )}
+
+        <div
+          className="create-post-container"
+          style={{ marginTop: "20px", marginBottom: "80px" }}
+        >
+          {/* <div className="create-post-header">Buat Balasan</div> */}
+          <form onSubmit={handleCommentSubmit} className="create-post-form">
+            <input
+              type="text"
+              className="create-post-input"
+              placeholder="Tulis balasan..."
+              value={comment}
+              onChange={(e) => { setComment(e.target.value); console.log(comment) }}
+            />
+            <button type="submit" className="create-post-button">
+              Unggah
+            </button>
+          </form>
+        </div>
+
+      </main>
+    </div>);
+  }
+
   return (
     <div className="app-container feed-page">
       <Sidebar />
       <main className="main-content">
+        <h2 className="mobile-page-title">Curhatan 'username'</h2>
         {isLoading ? (
           <Loading />
         ) : error ? (
@@ -79,6 +158,10 @@ const FeedDetail = () => {
               </div>
               <div className="post-content">{post.content}</div>
             </div>
+
+            <div className="mobile-replies-header">Balasan</div>
+            <hr />
+
             <div className="comments-container">
               {post.comments.length === 0 ? (
                 <div className="no-comments-message">Belum ada balasan, jadilah orang pertama yang dapat mendengarkan cerita orang ini.</div>
@@ -108,7 +191,7 @@ const FeedDetail = () => {
                   className="create-post-input"
                   placeholder="Tulis balasan..."
                   value={comment}
-                  onChange={(e) => {setComment(e.target.value); console.log(comment)}}
+                  onChange={(e) => { setComment(e.target.value); console.log(comment) }}
                 />
                 <button type="submit" className="create-post-button">
                   Unggah

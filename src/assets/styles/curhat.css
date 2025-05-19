@@ -1,3 +1,9 @@
+/* Base App Container */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Josefin Sans', sans-serif;
+}
 .app-container.curhat-page {
   display: flex;
   min-height: 100vh;
@@ -29,6 +35,10 @@
   max-width: 768px;
   margin: 0 auto;
   width: 100%;
+}
+
+.submit-button {
+  border: none;
 }
 
 /* CIRCLE ANIMASI */
@@ -85,7 +95,7 @@
   position: relative;
   border-radius: 9999px;
   padding: 2px;
-   background: linear-gradient(to right, #a18cd1, #fbc2eb);
+  background: linear-gradient(to right, #a18cd1, #fbc2eb);
 }
 .input-inner {
   display: flex;
@@ -119,55 +129,92 @@
   cursor: pointer;
 }
 
-/* INPUT STYLING */
-.input-container {
+/* EMOTION & RECOMMENDATION */
+.emotion-result {
+  background-color: #e2e4e5;
+  border-radius: 50px;
+  padding: 2px 20px;
+  margin-bottom: 15px;
+  box-shadow: 2px 2px 2px #aaa;
+}
+.emotion-highlight {
+  font-weight: bold;
+  color: #0955ec;
+}
+.recommendation-header {
+  background-color: #e2e4e5;
+  border-radius: 50px;
+  box-shadow: 2px 2px 2px #aaa;
+  padding: 2px 20px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+/* VIDEO RECOMMENDATIONS */
+.video-recommendations {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+  margin-top: 32px;
+}
+
+.frame-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 180px;
+  max-width: 300px;
+  align-items: center;
+  text-align: center;
+}
+
+.frame-container p {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+.video-card {
+  width: 30%;
+  min-width: 180px;
+}
+.video-thumbnail {
+  aspect-ratio: 1 / 1;
   width: 100%;
-  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
 }
-.input-wrapper {
-  position: relative;
-  border-radius: 9999px;
-  padding: 2px;
-   background: linear-gradient(to right, #a18cd1, #fbc2eb);
+.video-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-.input-inner {
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  background-color: white;
-  border-radius: 9999px;
+.video-title {
+  margin-top: 8px;
 }
-.chat-input {
-  flex: 1;
-  border: none;
-  padding: 10px 0;
+.video-title a {
+  color: #1d4ed8;
+  text-decoration: none;
   font-size: 14px;
-  border-radius: 9999px;
-  outline: none;
 }
-.chat-input:focus {
-  outline: none;
-}
-.chat-input::placeholder {
-  color: #aaa;
-}
-.send-button {
-  width: 25px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 8px;
-  font-size: 18px;
-  cursor: pointer;
+.video-title a:hover {
+  text-decoration: underline;
 }
 
-
-/* responsive */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .main-content {
     padding: 1rem;
     margin-left: 0px;
+  }
+
+  .input-container {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 80px;
   }
 
   .chat-container {
@@ -180,6 +227,18 @@
   }
 
   .send-button {
+    width: 100%;
+  }
+
+  .result-area {
+    padding: 2rem;
+  }
+
+  .video-recommendations {
+    flex-direction: column;
+  }
+
+  .video-card {
     width: 100%;
   }
 }

@@ -5,7 +5,7 @@ import postService from "../services/postService";
 import { formatRelativeTime } from "../utils/timeUtils";
 import { Link } from "react-router-dom";
 import { Loading } from "../components/Loading";
-import logoIcon from "../assets/img/logoIcon.png";
+import { Logo } from "../components/Logo";
 
 const Feed = () => {
   const [postContent, setPostContent] = useState("");
@@ -20,12 +20,14 @@ const Feed = () => {
       try {
         setIsLoading(true);
         const data = await postService.getAllPosts();
-        const posts = data.data;
+        setPosts(data.data);
+        const postsToBeSorted = [...data.data];
+        console.log(await postService.getAllPosts());
 
-        const sortedPosts = posts.sort((a, b) => b.commentsCount - a.commentsCount);
+        const sortedPosts = postsToBeSorted.sort((a, b) => b.commentsCount - a.commentsCount);
         setBestPosts([sortedPosts[0], sortedPosts[1], sortedPosts[2]]);
 
-        setPosts(posts);
+        
         setError(null);
       } catch (err) {
         console.error("Error fetching posts:", err);
@@ -69,12 +71,7 @@ const Feed = () => {
     <div className="app-container feed-page">
       <Sidebar />
       <main className="main-content">
-      <div className="logo-container">
-        <div className="logo">
-          <img src={logoIcon} alt="Logo" className="logo-icon" />
-          <span className="logo-text">RasaKata</span>
-        </div>
-      </div>
+        <Logo />
         <h2 className="page-title">Curhat Anonim</h2>
         {/* Post Input */}
         <div className="create-post-container">
@@ -94,94 +91,94 @@ const Feed = () => {
         {error && <p className="error-message">{error}</p>}
 
         {/* Posts */}
-          {isLoading ? (
-            <Loading />
-          ) : error ? (
-            <div className="error-message">{error}</div>
-          ) : posts.length === 0 ? (
-            <div className="no-posts">No posts yet. Be the first to share!</div>
-          ) : (
-                  <div className="posts-container">
-                    <div className="main-posts">
-                    <h3>All posts</h3>
-                      {posts.map((post) => (
-                        <div key={post.id} className="post-card">
-                          <div className="post-header">
-                            <div className="post-avatar">
-                              {post.username ? post.username[0] : "?"}
-                            </div>
-                            <div>
-                              <div className="post-author">Anonymous</div>
-                              <div className="post-time">
-                                {formatRelativeTime(post.created_at)}
-                              </div>
-                            </div>
-                          </div>
-                          <div className="post-content">{post.content}</div>
-                          <div className="post-footer">
-                            <Link to={`/feed/${post.id}`}>
-                              <button className="post-reply-button">
-                                {post.commentsCount} balasan
-                              </button>
-                            </Link>
-                          </div>
-                        </div>
-                      ))}
+        {isLoading ? (
+          <Loading />
+        ) : error ? (
+          <div className="error-message">{error}</div>
+        ) : posts.length === 0 ? (
+          <div className="no-posts">No posts yet. Be the first to share!</div>
+        ) : (
+          <div className="posts-container">
+            <div className="main-posts">
+              <h3>All posts</h3>
+              {posts.map((post) => (
+                <div key={post.id} className="post-card">
+                  <div className="post-header">
+                    <div className="post-avatar">
+                      {post.username ? post.username[0] : "?"}
                     </div>
-                    <div className="side-posts">
-                      <div className="best-posts">
-                        <h3>Most hot posts</h3>
-                        {bestPosts.map((post) => (
-                        <div key={post.id} className="post-card">
-                          <div className="post-header">
-                            <div className="post-avatar">
-                              {post.username ? post.username[0] : "?"}
-                            </div>
-                            <div>
-                              <div className="post-author">Anonymous</div>
-                              <div className="post-time">
-                                {formatRelativeTime(post.created_at)}
-                              </div>
-                            </div>
-                          </div>
-                          <div className="post-content">{post.content}</div>
-                          <div className="post-footer">
-                            <Link to={`/feed/${post.id}`}>
-                              <button className="post-reply-button">
-                                {post.commentsCount} balasan
-                              </button>
-                            </Link>
-                          </div>
-                        </div>
-                      ))}
-                      </div>
-                      <div className="my-posts">
-                        <h3>My posts</h3>
-                        <div className="post-card">
-                          <div className="post-header">
-                            <div className="post-avatar">
-                              ?
-                            </div>
-                            <div>
-                              <div className="post-author">Anonymous</div>
-                              <div className="post-time">
-                                4 jam yang lalu
-                              </div>
-                            </div>
-                          </div>
-                          <div className="post-content">fkfsdfsdkjfkdjskj</div>
-                          <div className="post-footer">
-                            <Link to={`/feed/1`}>
-                              <button className="post-reply-button">
-                                34 balasan
-                              </button>
-                            </Link>
-                          </div>
-                        </div>
+                    <div>
+                      <div className="post-author">Anonymous</div>
+                      <div className="post-time">
+                        {formatRelativeTime(post.created_at)}
                       </div>
                     </div>
                   </div>
-                )}
+                  <div className="post-content">{post.content}</div>
+                  <div className="post-footer">
+                    <Link to={`/feed/${post.id}`}>
+                      <button className="post-reply-button">
+                        {post.commentsCount} balasan
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="side-posts">
+              <div className="best-posts">
+                <h3>Most hot posts</h3>
+                {bestPosts.map((post) => (
+                  <div key={post.id} className="post-card">
+                    <div className="post-header">
+                      <div className="post-avatar">
+                        {post.username ? post.username[0] : "?"}
+                      </div>
+                      <div>
+                        <div className="post-author">Anonymous</div>
+                        <div className="post-time">
+                          {formatRelativeTime(post.created_at)}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="post-content">{post.content}</div>
+                    <div className="post-footer">
+                      <Link to={`/feed/${post.id}`}>
+                        <button className="post-reply-button">
+                          {post.commentsCount} balasan
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="my-posts" style={{ paddingBottom: "80px"}}>
+                <h3>My posts</h3>
+                <div className="post-card">
+                  <div className="post-header">
+                    <div className="post-avatar">
+                      ?
+                    </div>
+                    <div>
+                      <div className="post-author">Anonymous</div>
+                      <div className="post-time">
+                        4 jam yang lalu
+                      </div>
+                    </div>
+                  </div>
+                  <div className="post-content">sakdfjask;fjkasdjfkasdjf kasjfksajfkl;jas kfjskdfjsdklfjasdkfjklsd jfksjfjifowjeifojweifjw eifhjjkvnksnfkewj</div>
+                  <div className="post-footer">
+                    <Link to={`/feed/1`}>
+                      <button className="post-reply-button">
+                        34 balasan
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );

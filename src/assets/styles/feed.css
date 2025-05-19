@@ -80,12 +80,33 @@
   border-radius: 10px;
   padding: 16px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-  margin-bottom: 16px;
-  
+  margin: 16px 16px; 
   overflow: hidden;
 }
 
+.mobile-post-card {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  font-size: small;
+}
+
+.comments-container .post-card {
+  margin-left: 30px;
+}
+
+.mobile-post-detail-container {
+  margin-bottom: 0;
+}
+
 .post-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-post-header {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -103,11 +124,33 @@
   color: #374151;
 }
 
+.mobile-post-avatar {
+  width: 36px;
+  height: 36px;
+  background-color: #e5e7eb;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #374151;
+}
+
 .post-author, .reply-author {
   font-weight: bold;
 }
 
+.mobile-post-author {
+  font-weight: bold;
+  color: #374151;
+}
+
 .post-time, .reply-time {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.mobile-post-time {
   font-size: 12px;
   color: #6b7280;
 }
@@ -117,6 +160,45 @@
   margin-bottom: 8px;
   font-size: 15px;
 }
+
+.mobile-post-content {
+  margin-top: 12px;
+  margin-bottom: 8px;
+  margin-left: 45px;
+  font-size: 15px;
+   color: #374151;
+}
+hr {
+  border: 0;
+  border-top: 2px solid #e5e7eb;
+  margin: 0 2px;
+}
+.mobile-replies-header{
+  font-size: medium;
+  color: #374151;
+  padding-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.mobile-posts-comments-container {
+  display: flex;
+  flex-direction: column;
+  /* gap: 8px; */
+  padding-left: 10px;
+}
+
+.mobile-posts-comments-container .mobile-post-card {
+  margin-bottom: 0;
+}
+
+.mobile-page-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+
 
 .post-footer {
   display: flex;
@@ -186,13 +268,14 @@
     max-width: 200px;
   }
 
-  .logo {
+  .logo-header {
     display: flex;
+    align-items: center; 
     width: 300px;
-    align-items: center;
-    justify-items: center;
   }
-
+.logo-icon , .logo-text { 
+  margin: 0;
+}
   .post-reply-button {
     font-size: 12px;
   }
