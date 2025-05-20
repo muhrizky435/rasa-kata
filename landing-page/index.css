@@ -1,1 +1,589 @@
-/* Styling landing page disini */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@700&family=Inter:wght@300;400;500;600;700&family=Josefin+Sans:wght@400;500;600&display=swap');
+
+body {
+    background-color: #ffffff;
+    color: #37474f;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 65px;
+    height: 68px;
+}
+
+.logo-text {
+    font-family: 'Amita', cursive;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 68px;
+    background: linear-gradient(71deg, #345fbe 0%, #b55eaf 50%, #ffa5c5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 10px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    margin-right: 30px;
+}
+
+.nav-links a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: #32393d;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.auth-buttons {
+    display: flex;
+}
+
+.btn {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 15px;
+}
+
+.btn-primary {
+    background-color: #81a1e9;
+    color: #f5f5f5;
+    border: none;
+}
+
+.btn-outline {
+    background-color: #ffffff;
+    color: #81a1e9;
+    border: 1px solid #81a1e9;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0;
+    position: relative;
+}
+
+.feature-diagram {
+    width: 500px;
+    height: 500px;
+    margin-bottom: 30px;
+}
+
+.feature-tag {
+    position: absolute;
+    background-color: #ffffff;
+    padding: 7px 10px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #345fbe;
+    line-height: 25px;
+}
+
+.tag-detection {
+    top: 318px;
+    left: calc(50% - 250px + 282px);
+}
+
+.tag-visualization {
+    top: 221px;
+    left: calc(50% + 11px);
+}
+
+.tag-tracking {
+    top: 318px;
+    left: calc(50% + 220px);
+}
+
+.tag-feedback {
+    top: 543px;
+    left: calc(50% + 294px);
+}
+
+.tag-posting {
+    top: 536px;
+    left: calc(50% - 294px);
+}
+
+.hero-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 55px;
+    text-align: center;
+    margin-bottom: 20px;
+    max-width: 939px;
+}
+
+.highlight {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 45px;
+    line-height: 55px;
+    background: linear-gradient(71deg, #345fbe 0%, #b55eaf 50%, #ffa5c5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Features Section */
+.features {
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feature-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 37px;
+    text-align: center;
+    color: #37474f;
+    margin-bottom: 20px;
+}
+
+.feature-description {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #979a9b;
+    max-width: 881px;
+    margin-bottom: 40px;
+}
+
+.feature-cards {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.feature-card {
+    max-width: 350px;
+    text-align: center;
+}
+
+.feature-card-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.feature-card-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    color: #37474f;
+    margin-bottom: 20px;
+}
+
+.feature-card-description {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    color: #979a9b;
+    text-align: left;
+}
+
+.feature-card-right .feature-card-description {
+    text-align: left;
+}
+
+.feature-card-left .feature-card-description {
+    text-align: right;
+}
+
+.feature-divider {
+    width: 3px;
+    height: 187px;
+    background-color: #dbdbdb;
+}
+
+/* Emotion Tracking Section */
+.emotion-tracking {
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tracking-graph {
+    width: 435px;
+    height: 101px;
+}
+
+.tracking-content {
+    max-width: 448px;
+}
+
+.tracking-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 45px;
+    color: #37474f;
+    margin-bottom: 20px;
+}
+
+/* Anonymous Forum Section */
+.anonymous-forum {
+    padding: 50px 0;
+}
+
+.forum-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 45px;
+    color: #37474f;
+    margin-bottom: 20px;
+}
+
+.forum-description {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #979a9b;
+    max-width: 919px;
+    margin: 0 auto 40px;
+}
+
+.forum-container {
+    max-width: 833px;
+    margin: 0 auto;
+    border: 1px solid #c7c7c7;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.post-input {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    height: 54px;
+    border-bottom: 1px solid #c7c7c7;
+    border-radius: 27px;
+    margin-bottom: 10px;
+}
+
+.post-input input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #979a9b;
+    padding: 10px 0;
+}
+
+.post-input button {
+    background: none;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: #345fbe;
+    cursor: pointer;
+}
+
+.forum-posts {
+    padding: 20px;
+}
+
+.post {
+    margin-bottom: 30px;
+}
+
+.post-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.post-author {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    color: #37474f;
+}
+
+.post-time {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 19px;
+    color: #979a9b;
+    margin-bottom: 10px;
+}
+
+.post-content {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #37474f;
+    margin-bottom: 15px;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.post-reply-count {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 19px;
+    color: #345fbe;
+    cursor: pointer;
+}
+
+.post-divider {
+    height: 3px;
+    background-color: #c7c7c7;
+    margin: 20px 0;
+}
+
+.reply {
+    display: flex;
+    margin-top: 20px;
+}
+
+.reply-line {
+    width: 1px;
+    height: 30px;
+    background-color: #979a9b;
+    margin-right: 25px;
+}
+
+.reply-content {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #37474f;
+}
+
+/* Call to Action Section */
+.cta-section {
+    background-color: #fffefe;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 50px;
+    margin: 50px auto;
+    max-width: 1089px;
+    text-align: center;
+}
+
+.cta-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.cta-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 37px;
+    color: #37474f;
+    margin-bottom: 20px;
+}
+
+.cta-description {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+    color: #979a9b;
+    max-width: 704px;
+    margin: 0 auto 40px;
+}
+
+.cta-button {
+    background: linear-gradient(71deg, #345fbe 0%, #b55eaf 50%, #ffa5c5 100%);
+    border-radius: 20px;
+    padding: 13px 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+}
+
+.cta-button-text {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    color: #f5f5f5;
+    margin-right: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #f3f6ff;
+    padding: 30px 0;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+
+.footer-info {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+    color: #37474f;
+}
+
+@media (max-width: 1024px) {
+    .feature-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-divider {
+        width: 80%;
+        height: 2px;
+        margin: 20px 0;
+    }
+
+    .emotion-tracking {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .tracking-graph {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        margin: 20px 0;
+    }
+
+    .hero-title {
+        font-size: 36px;
+        line-height: 44px;
+    }
+
+    .highlight {
+        font-size: 36px;
+        line-height: 44px;
+    }
+
+    .feature-diagram {
+        width: 300px;
+        height: 300px;
+    }
+
+    .feature-tag {
+        font-size: 16px;
+        padding: 5px 8px;
+    }
+
+    .tag-detection {
+        top: 218px;
+        left: calc(50% - 150px + 182px);
+    }
+
+    .tag-visualization {
+        top: 161px;
+        left: calc(50% + 11px);
+    }
+
+    .tag-tracking {
+        top: 218px;
+        left: calc(50% + 120px);
+    }
+
+    .tag-feedback {
+        top: 343px;
+        left: calc(50% + 194px);
+    }
+
+    .tag-posting {
+        top: 336px;
+        left: calc(50% - 194px);
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
