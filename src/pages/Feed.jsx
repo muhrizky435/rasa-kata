@@ -46,9 +46,11 @@ const Feed = () => {
     if (postContent.trim() === "") return;
 
     try {
+      const userData = localStorage.getItem("user_data");
       setIsLoading(true);
       const storyData = {
         content: postContent,
+        anonymous_username: JSON.parse(userData).anonymous_username,
       };
 
       // Submit the new post through the API
@@ -108,7 +110,7 @@ const Feed = () => {
                       {post.username ? post.username[0] : "?"}
                     </div>
                     <div>
-                      <div className="post-author">Anonymous</div>
+                      <div className="post-author">{post.anonymous_username}</div>
                       <div className="post-time">
                         {formatRelativeTime(post.created_at)}
                       </div>
@@ -135,7 +137,7 @@ const Feed = () => {
                         {post.username ? post.username[0] : "?"}
                       </div>
                       <div>
-                        <div className="post-author">Anonymous</div>
+                        <div className="post-author">{post.anonymous_username}</div>
                         <div className="post-time">
                           {formatRelativeTime(post.created_at)}
                         </div>

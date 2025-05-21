@@ -1,0 +1,935 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Amita:wght@700&family=Inter:wght@300;400;500;600;700&family=Josefin+Sans:wght@400;500;600&display=swap');
+
+body {
+    background-color: #ffffff;
+    color: #37474f;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #345fbe;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 65px;
+    height: 68px;
+}
+
+.logo-text {
+    font-family: 'Amita', cursive;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 68px;
+    background: linear-gradient(71deg, #345fbe 0%, #b55eaf 50%, #ffa5c5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 10px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    margin-right: 30px;
+}
+
+.nav-links a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: #32393d;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.auth-buttons {
+    display: flex;
+}
+
+.btn {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 15px;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #81a1e9;
+    color: #f5f5f5;
+}
+
+.btn-outline {
+    background-color: #ffffff;
+    color: #81a1e9;
+    border: 1px solid #81a1e9;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.emotion-circle {
+    position: relative;
+    width: 720px;
+    height: 720px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.feature-diagram-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Animasi rotasi dihapus */
+}
+
+.feature-diagram {
+    width: 85%;
+    height: auto;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.feature-tag {
+    position: absolute;
+    background-color: transparent;
+    padding: 5px 15px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+    color: #1E3A8A;
+    line-height: 22px;
+    white-space: nowrap;
+    text-align: center;
+    transform: translate(-50%, -50%);
+}
+
+/* Posisi tag berdasarkan lingkaran concentric (disesuaikan dengan gambar) */
+.tag-detection {
+    top: 50%;
+    left: 5%;
+}
+
+.tag-visualization {
+    top: 25%;
+    left: 50%;
+}
+
+.tag-tracking {
+    top: 50%;
+    left: 95%;
+}
+
+.tag-feedback {
+    top: 75%;
+    left: 80%;
+}
+
+.tag-posting {
+    top: 75%;
+    left: 20%;
+}
+
+.hero-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 44px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-title span {
+    font-weight: 700;
+    background: linear-gradient(90deg, #345fbe 0%, #b55eaf 50%, #ffa5c5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.highlight {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 45px;
+    line-height: 55px;
+    background: linear-gradient(71deg, #345fbe 0%, #b55eaf 50%, #ffa5c5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Features Section */
+.features {
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feature-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 37px;
+    text-align: center;
+    color: #37474f;
+    margin-bottom: 20px;
+}
+
+.feature-description {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #979a9b;
+    max-width: 881px;
+    margin-bottom: 40px;
+}
+
+.feature-cards {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.feature-card {
+    max-width: 350px;
+    text-align: center;
+}
+
+.feature-card-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.feature-card-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    color: #37474f;
+    margin-bottom: 20px;
+}
+
+.feature-card-description {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    color: #979a9b;
+    text-align: left;
+}
+
+.feature-divider {
+    width: 3px;
+    height: 187px;
+    background-color: #dbdbdb;
+}
+
+/* Emotion Tracking Section */
+.emotion-tracking {
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.tracking-graph {
+    width: 435px;
+    height: 101px;
+}
+
+.tracking-content {
+    max-width: 448px;
+}
+
+.tracking-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 45px;
+    color: #37474f;
+    margin-bottom: 20px;
+}
+
+/* Anonymous Forum Section */
+.anonymous-forum {
+    padding: 50px 0;
+}
+
+.forum-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 45px;
+    color: #37474f;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.forum-description {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #979a9b;
+    max-width: 919px;
+    margin: 0 auto 40px;
+}
+
+.forum-container {
+    max-width: 833px;
+    margin: 0 auto;
+    border: 1px solid #c7c7c7;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.post-input {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    height: 54px;
+    border-bottom: 1px solid #c7c7c7;
+    border-radius: 27px;
+    margin-bottom: 10px;
+}
+
+.post-input input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #979a9b;
+    padding: 10px 0;
+}
+
+.post-input button {
+    background: none;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: #345fbe;
+    cursor: pointer;
+}
+
+.forum-posts {
+    padding: 20px;
+}
+
+.post {
+    margin-bottom: 30px;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.post-author {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 25px;
+    color: #37474f;
+}
+
+.post-time {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 19px;
+    color: #979a9b;
+}
+
+.post-content {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #37474f;
+    margin-bottom: 15px;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.post-reply-count {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 19px;
+    color: #345fbe;
+    cursor: pointer;
+}
+
+.post-divider {
+    height: 3px;
+    background-color: #c7c7c7;
+    margin: 20px 0;
+}
+
+.reply {
+    display: flex;
+    margin-top: 20px;
+}
+
+.reply-line {
+    width: 1px;
+    height: 30px;
+    background-color: #979a9b;
+    margin-right: 25px;
+}
+
+.reply-content {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #37474f;
+}
+
+/* Call to Action Section */
+.cta-section {
+    background-color: #fffefe;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 50px;
+    margin: 50px auto;
+    max-width: 1089px;
+    text-align: center;
+}
+
+.cta-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.cta-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 37px;
+    color: #37474f;
+    margin-bottom: 20px;
+}
+
+.cta-description {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+    color: #979a9b;
+    max-width: 704px;
+    margin: 0 auto 40px;
+}
+
+.cta-button {
+    background: linear-gradient(71deg, #345fbe 0%, #b55eaf 50%, #ffa5c5 100%);
+    border-radius: 20px;
+    padding: 13px 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+}
+
+.cta-button-text {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    color: #f5f5f5;
+    margin-right: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #f3f6ff;
+    padding: 30px 0;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+
+.footer-info {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+    color: #37474f;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .nav-links {
+        margin: 15px 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 20px;
+        margin: 10px;
+    }
+
+    .auth-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .btn {
+        font-size: 20px;
+        margin: 10px;
+        width: auto;
+    }
+
+    .emotion-circle {
+        width: 500px;
+        height: 500px;
+    }
+
+    .feature-tag {
+        font-size: 16px;
+        padding: 4px 8px;
+    }
+
+    .tag-detection { left: 5%; }
+    .tag-visualization { top: 25%; left: 50%; }
+    .tag-tracking { left: 95%; }
+    .tag-feedback { top: 75%; left: 80%; }
+    .tag-posting { top: 75%; left: 20%; }
+
+    .hero-title {
+        font-size: 30px;
+        line-height: 38px;
+    }
+
+    .highlight {
+        font-size: 38px;
+        line-height: 46px;
+    }
+
+    .feature-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-divider {
+        width: 80%;
+        height: 2px;
+        margin: 20px 0;
+    }
+
+    .emotion-tracking {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .tracking-graph {
+        width: 350px;
+        height: auto;
+        margin-bottom: 30px;
+    }
+
+    .tracking-title {
+        font-size: 38px;
+        line-height: 40px;
+    }
+
+    .forum-container {
+        max-width: 100%;
+    }
+
+    .cta-section {
+        padding: 40px;
+        margin: 40px 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo img {
+        width: 50px;
+        height: 52px;
+    }
+
+    .logo-text {
+        font-size: 28px;
+        line-height: 52px;
+    }
+
+    .nav-links a {
+        font-size: 18px;
+        margin: 8px;
+    }
+
+    .btn {
+        font-size: 18px;
+        padding: 8px 16px;
+    }
+
+    .emotion-circle {
+        width: 400px;
+        height: 400px;
+    }
+
+    .feature-tag {
+        font-size: 14px;
+        padding: 3px 6px;
+    }
+
+    .tag-detection { left: 5%; }
+    .tag-visualization { top: 25%; left: 50%; }
+    .tag-tracking { left: 95%; }
+    .tag-feedback { top: 75%; left: 80%; }
+    .tag-posting { top: 75%; left: 20%; }
+
+    .hero-title {
+        font-size: 26px;
+        line-height: 34px;
+    }
+
+    .highlight {
+        font-size: 34px;
+        line-height: 42px;
+    }
+
+    .feature-title {
+        font-size: 26px;
+        line-height: 32px;
+    }
+
+    .feature-description {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .feature-card-title {
+        font-size: 20px;
+        line-height: 22px;
+    }
+
+    .feature-card-description {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .tracking-title {
+        font-size: 34px;
+        line-height: 36px;
+    }
+
+    .forum-title {
+        font-size: 34px;
+        line-height: 36px;
+    }
+
+    .forum-description {
+        font-size: 18px;
+        line-height: 18px;
+    }
+
+    .post-author {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .post-time {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .post-content {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .cta-title {
+        font-size: 26px;
+        line-height: 32px;
+    }
+
+    .cta-description {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .cta-button-text {
+        font-size: 18px;
+        line-height: 18px;
+    }
+
+    .footer-text {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .logo img {
+        width: 40px;
+        height: 42px;
+    }
+
+    .logo-text {
+        font-size: 24px;
+        line-height: 42px;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+        margin: 6px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 6px 12px;
+        margin: 5px;
+    }
+
+    .emotion-circle {
+        width: 300px;
+        height: 300px;
+    }
+
+    .feature-tag {
+        font-size: 12px;
+        padding: 2px 4px;
+    }
+
+    .tag-detection { left: 5%; }
+    .tag-visualization { top: 25%; left: 50%; }
+    .tag-tracking { left: 95%; }
+    .tag-feedback { top: 75%; left: 80%; }
+    .tag-posting { top: 75%; left: 20%; }
+
+    .hero-title {
+        font-size: 22px;
+        line-height: 28px;
+    }
+
+    .highlight {
+        font-size: 28px;
+        line-height: 34px;
+    }
+
+    .feature-title {
+        font-size: 22px;
+        line-height: 28px;
+    }
+
+    .feature-description {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .feature-card-title {
+        font-size: 18px;
+        line-height: 20px;
+    }
+
+    .feature-card-description {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .tracking-graph {
+        width: 100%;
+        height: auto;
+    }
+
+    .tracking-title {
+        font-size: 28px;
+        line-height: 30px;
+    }
+
+    .forum-title {
+        font-size: 28px;
+        line-height: 30px;
+    }
+
+    .forum-description {
+        font-size: 16px;
+        line-height: 16px;
+    }
+
+    .post-input {
+        height: 48px;
+    }
+
+    .post-input input {
+        font-size: 14px;
+    }
+
+    .post-input button {
+        font-size: 14px;
+    }
+
+    .post-author {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .post-time {
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    .post-content {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .post-reply-count {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .reply-content {
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+    .cta-section {
+        padding: 30px;
+        margin: 30px 10px;
+    }
+
+    .cta-title {
+        font-size: 22px;
+        line-height: 28px;
+    }
+
+    .cta-description {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+    }
+
+    .cta-button-text {
+        font-size: 16px;
+        line-height: 16px;
+    }
+
+    .footer-text {
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
