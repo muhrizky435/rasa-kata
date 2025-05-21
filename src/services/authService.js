@@ -2,7 +2,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
 // API base URL - adjust to match your actual API endpoint
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = "https://rasa-kata-7ca6a75a895b.herokuapp.com/api";
 
 // Create axios instance specifically for auth requests
 const authClient = axios.create({
@@ -27,27 +27,10 @@ const authService = {
    */
   login: async (credentials) => {
     try {
-      const { email, password } = credentials;
-
-      if (email === "dev@purpose.com" || password === "d3v") {
-        const user = {
-          id: 1,
-          name: "Dev Purpose",
-          email: "dev@purpuse.com",
-        };
-
-        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
-
-        localStorage.setItem(TOKEN_KEY, token);
-        localStorage.setItem(USER_KEY, JSON.stringify(user));
-
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
-        return user;
-      }
 
       const response = await authClient.post("/auth/login", credentials);
-      const { token, user } = response.data;
+      console.log("Login response:", response.data.data);
+      const { token, user } = response.data.data;
 
       // Store token and user data
       localStorage.setItem(TOKEN_KEY, token);

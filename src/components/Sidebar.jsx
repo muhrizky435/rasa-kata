@@ -9,6 +9,8 @@ import unggahIcon from "../assets/img/unggahIcon.png";
 import settingIcon from "../assets/img/settingIcon.png";
 import LeftIcon from "../assets/img/leftIcon.png";
 import RightIcon from "../assets/img/rightIcon.png";
+import Swal from "sweetalert2";
+import authService from "../services/authService";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -17,6 +19,23 @@ const Sidebar = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const toggleSidebar = () => setCollapsed(!collapsed);
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Logout",
+      text: "Are you sure you want to logout?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Perform logout action here
+        authService.logout();
+        window.location.href = "/";
+      }
+    });
+  }
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -129,10 +148,10 @@ const Sidebar = () => {
       </div>
 
       <div className="settings-section">
-        <Link to="/pengaturan" className="settings-link">
+        <button style={{ background: "none", border: "none" }} onClick={handleLogout}>
           <img src={settingIcon} alt="Setting Icon" className="settings-icon" />
-          {!collapsed && <span>Pengaturan</span>}
-        </Link>
+          {!collapsed && <span>Logout</span>}
+        </button>
       </div>
     </div>
   );
