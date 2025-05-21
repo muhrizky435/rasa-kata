@@ -68,9 +68,9 @@
   width: 24px;
   height: 24px;
 }
-.settings-icon {
-  width: 20px;
-  height: 20px;
+.logout-icon {
+  width: 28px;
+  height: 28px;
 }
 .active .icon-container {
   color: #3B82F6;
@@ -122,22 +122,22 @@
   font-weight: 500;
   color: #333;
 }
-.settings-section {
+.logout-section {
   border-top: 1px solid #f0f0f0;
-  padding: 16px;
+  padding: 15px;
 }
-.settings-link {
+.logout-link {
   display: flex;
   align-items: center;
   color: #666;
   transition: color 0.2s;
 }
-.settings-link:hover {
+.logout-link:hover {
   color: #333;
 }
-.settings-icon {
+.logout-icon {
   margin-right: 12px;
-  font-size: 16px;
+  font-size: 18px;
 }
 .sidebar.collapsed {
   width: 80px;
@@ -146,10 +146,10 @@
 .sidebar.collapsed .menu-text,
 .sidebar.collapsed .submenu,
 .sidebar.collapsed .user-info,
-.sidebar.collapsed .settings-section span {
+.sidebar.collapsed .logout-section span {
   display: none;
 }
-.sidebar.collapsed .settings-section,
+.sidebar.collapsed .logout-section,
 .sidebar.collapsed .user-section {
   justify-content: center;
 }
@@ -245,7 +245,7 @@
   .sidebar.collapsed:hover .logo-text,
   .sidebar.collapsed:hover .menu-text,
   .sidebar.collapsed:hover .user-info,
-  .sidebar.collapsed:hover .settings-section span {
+  .sidebar.collapsed:hover .logout-section span {
     display: inline-block;
   }
   

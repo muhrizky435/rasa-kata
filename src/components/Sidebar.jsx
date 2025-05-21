@@ -5,7 +5,7 @@ import logoIcon from "../assets/img/logoIcon.png";
 import dashboardIcon from "../assets/img/dashboardIcon.png";
 import curhatIcon from "../assets/img/curhatIcon.png";
 import unggahIcon from "../assets/img/unggahIcon.png";
-import settingIcon from "../assets/img/settingIcon.png";
+import logoutIcon from "../assets/img/logout.png";
 import LeftIcon from "../assets/img/leftIcon.png";
 import RightIcon from "../assets/img/rightIcon.png";
 import Swal from "sweetalert2";
@@ -59,8 +59,8 @@ const Sidebar = () => {
             <img src={unggahIcon} alt="Unggah" />
           </Link>
 
-          <Link to="/pengaturan" className={`mobile-menu-item ${isActive("/pengaturan") ? "active" : ""}`}>
-            <img src={settingIcon} alt="setting Icon" />
+          <Link to="/logout" className={`mobile-menu-item ${isActive("/logout") ? "active" : ""}`}>
+            <img src={logoutIcon} alt="logout Icon" />
           </Link>
         </div>
       </div>
@@ -134,9 +134,9 @@ const Sidebar = () => {
         )}
       </div>
 
-      <div className="settings-section">
+      <div className="logout-section">
         <button style={{ background: "none", border: "none" }} onClick={handleLogout}>
-          <img src={settingIcon} alt="Setting Icon" className="settings-icon" />
+          <img src={logoutIcon} alt="logoutIcon" className="logout-icon" />
           {!collapsed && <span>Logout</span>}
         </button>
       </div>
