@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
 import Curhat from './pages/Curhat'
 import Curhat_hasil from './pages/Curhat_hasil'
 import Feed from './pages/Feed'
@@ -34,6 +35,14 @@ function App() {
           <Route path="/" element={<Login />} />
           
           {/* Protected routes */}
+          <Route 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+            />
           <Route 
             path="/curhat" 
             element={

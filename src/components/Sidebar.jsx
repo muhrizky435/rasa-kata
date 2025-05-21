@@ -3,7 +3,6 @@ import "../assets/styles/sidebar.css";
 import { Link, useLocation } from "react-router-dom";
 import logoIcon from "../assets/img/logoIcon.png";
 import dashboardIcon from "../assets/img/dashboardIcon.png";
-import jejakIcon from "../assets/img/jejakIcon.png";
 import curhatIcon from "../assets/img/curhatIcon.png";
 import unggahIcon from "../assets/img/unggahIcon.png";
 import settingIcon from "../assets/img/settingIcon.png";
@@ -37,12 +36,12 @@ const Sidebar = () => {
             <img src={curhatIcon} alt="Curhat" />
           </Link>
 
-          <Link to="/jejak" className={`mobile-menu-item ${isActive("/jejak") ? "active" : ""}`}>
-            <img src={jejakIcon} alt="Jejak" />
-          </Link>
-
           <Link to="/feed" className={`mobile-menu-item ${isActive("/feed") ? "active" : ""}`}>
             <img src={unggahIcon} alt="Unggah" />
+          </Link>
+
+          <Link to="/pengaturan" className={`mobile-menu-item ${isActive("/pengaturan") ? "active" : ""}`}>
+            <img src={settingIcon} alt="setting Icon" />
           </Link>
         </div>
       </div>
@@ -89,18 +88,6 @@ const Sidebar = () => {
               <img src={curhatIcon} alt="Curhat Icon" />
             </div>
             <span className="menu-text">Curhat</span>
-          </Link>
-        </div>
-
-        <div className="menu-item">
-          <Link
-            to="/jejak"
-            className={`menu-link ${isActive("/jejak") ? "active" : ""}`}
-          >
-            <div className="icon-container">
-              <img src={jejakIcon} alt="Jejak Icon" />
-            </div>
-            <span className="menu-text">Jejak Emosi</span>
           </Link>
         </div>
 
