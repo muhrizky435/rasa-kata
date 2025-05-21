@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <div class="container">
         <header>
             <div class="logo">
@@ -15,41 +16,41 @@
             </div>
             <nav>
                 <div class="nav-links">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Feature</a>
+                    <a href="#" aria-label="Go to Home">Home</a>
+                    <a href="#" aria-label="Go to About">About</a>
+                    <a href="#" aria-label="Go to Features">Feature</a>
                 </div>
                 <div class="auth-buttons">
-                    <button class="btn btn-primary">Login</button>
-                    <button class="btn btn-outline">Sign Up</button>
+                    <button class="btn btn-primary" aria-label="Login">Login</button>
+                    <button class="btn btn-outline" aria-label="Sign Up">Sign Up</button>
                 </div>
             </nav>
         </header>
 
-        <section class="hero">
-            <img src="./assets/images/img_group_8.svg" alt="Feature Diagram" class="feature-diagram">
-            <div class="feature-tag tag-detection">Deteksi Emosi</div>
-            <div class="feature-tag tag-visualization">Visualisasi Emosi</div>
-            <div class="feature-tag tag-tracking">Lacak Emosi Harian</div>
-            <div class="feature-tag tag-feedback">Feedback Video</div>
-            <div class="feature-tag tag-posting">Posting Anonim</div>
-            
-            <h1 class="hero-title">Kenali & Kelola Emosimu dengan Lebih Baik dengan <span class="highlight">AI Rasa Kata</span></h1>
+        <section class="hero" id="main-content">
+            <div class="emotion-circle">
+                <div class="feature-diagram-container">
+                    <img src="./assets/images/img_group_8.svg" alt="Feature Diagram" class="feature-diagram">
+                    <div class="feature-tag tag-detection">Detek Emosi</div>
+                    <div class="feature-tag tag-visualization">Visualisasi Emosi</div>
+                    <div class="feature-tag tag-tracking">Lacak Emosi Harian</div>
+                    <div class="feature-tag tag-feedback">Feedback Video</div>
+                    <div class="feature-tag tag-posting">Posting Anonim</div>
+                </div>
+            </div>
+            <h1 class="hero-title">Kenali & Kelola Emosimu dengan Lebih Baik dengan <span>AI Rasa Kata</span></h1>
         </section>
 
         <section class="features">
             <h2 class="feature-title">Deteksi Emosi Otomatis</h2>
             <p class="feature-description">Rasakan kelegaan dengan sistem kami yang menganalisis isi jurnal atau percakapanmu secara real-time, dan mendeteksi emosi yang sedang kamu alami. Tanpa perlu repot menandai sendiri — biarkan AI kami membantumu memahami dirimu.</p>
-            
             <div class="feature-cards">
                 <div class="feature-card feature-card-left">
                     <img src="./assets/images/img_group_36x40.png" alt="Journal Icon" class="feature-card-icon">
                     <h3 class="feature-card-title">Tulis Jurnalmu dengan Bebas</h3>
                     <p class="feature-card-description">Ungkapkan perasaanmu, ceritakan hari-harimu, atau curahkan isi pikiranmu—tanpa sensor, tanpa takut dihakimi.</p>
                 </div>
-                
                 <div class="feature-divider"></div>
-                
                 <div class="feature-card feature-card-right">
                     <img src="./assets/images/img_group.png" alt="AI Icon" class="feature-card-icon">
                     <h3 class="feature-card-title">Biarkan AI Mendeteksi Emosimu</h3>
@@ -68,13 +69,11 @@
         <section class="anonymous-forum">
             <h2 class="forum-title">Halaman Anonim untuk Berbagi Cerita</h2>
             <p class="forum-description">Ingin mencurahkan isi hati tanpa takut dihakimi? Bagikan ceritamu secara anonim dan temukan kekuatan dari kisah orang lain. Scroll dan temukan bahwa kamu tidak sendirian — semua orang sedang berjuang dengan caranya masing-masing.</p>
-            
             <div class="forum-container">
                 <div class="post-input">
-                    <input type="text" placeholder="Apa ceritamu hari ini?">
-                    <button>Unggah</button>
+                    <input type="text" placeholder="Apa ceritamu hari ini?" aria-label="Enter your story">
+                    <button aria-label="Upload post">Unggah</button>
                 </div>
-                
                 <div class="forum-posts">
                     <div class="post">
                         <div class="post-header">
@@ -83,18 +82,16 @@
                         </div>
                         <div class="post-content">Why are the poorest states in America nearly all Republican? Why are the richest states nearly all Democrat?</div>
                         <div class="post-actions">
-                            <div class="post-reply-count">10 Balasan</div>
+                            <div class="post-reply-count" aria-expanded="false" tabindex="0">10 Balasan</div>
                         </div>
                     </div>
-                    
                     <div class="post-divider"></div>
-                    
                     <div class="post">
                         <div class="post-header">
                             <div class="post-author">PhillyBuck</div>
                             <div class="post-time">1 jam lalu</div>
                         </div>
-                        <div class="reply">
+                        <div class="reply" style="display: none;">
                             <div class="reply-line"></div>
                             <div class="reply-content">Aren't the poorest republican states highest on the welfare list? They detest the people who are keeping their lights on.</div>
                         </div>
@@ -110,7 +107,7 @@
             </div>
             <h2 class="cta-title">Mulai Perjalanan Emosionalmu Hari Ini</h2>
             <p class="cta-description">Jangan biarkan stres mendominasi hidupmu. Tulis, berbagi, dan temukan dukungan secara personal maupun komunitas.</p>
-            <button class="cta-button">
+            <button class="cta-button" aria-label="Start now">
                 <span class="cta-button-text">Mulai Sekarang</span>
                 <img src="./assets/images/img_vector_white_a700.svg" alt="Arrow">
             </button>
@@ -137,9 +134,11 @@
         // Toggle reply visibility
         document.querySelector('.post-reply-count').addEventListener('click', function() {
             const replies = document.querySelectorAll('.reply');
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
             replies.forEach(reply => {
-                reply.style.display = reply.style.display === 'none' ? 'flex' : 'none';
+                reply.style.display = isExpanded ? 'none' : 'flex';
             });
+            this.setAttribute('aria-expanded', !isExpanded);
         });
 
         // Post submission
@@ -148,63 +147,52 @@
             if (input.value.trim() !== '') {
                 const forumPosts = document.querySelector('.forum-posts');
                 
-                // Create new post
                 const newPost = document.createElement('div');
                 newPost.className = 'post';
                 
-                // Post header
                 const postHeader = document.createElement('div');
                 postHeader.className = 'post-header';
-                
                 const postAuthor = document.createElement('div');
                 postAuthor.className = 'post-author';
                 postAuthor.textContent = 'AnonymousUser';
-                
                 const postTime = document.createElement('div');
                 postTime.className = 'post-time';
                 postTime.textContent = 'Baru saja';
-                
                 postHeader.appendChild(postAuthor);
                 postHeader.appendChild(postTime);
                 
-                // Post content
                 const postContent = document.createElement('div');
                 postContent.className = 'post-content';
                 postContent.textContent = input.value;
                 
-                // Post actions
                 const postActions = document.createElement('div');
                 postActions.className = 'post-actions';
-                
                 const replyCount = document.createElement('div');
                 replyCount.className = 'post-reply-count';
+                replyCount.setAttribute('aria-expanded', 'false');
+                replyCount.setAttribute('tabindex', '0');
                 replyCount.textContent = '0 Balasan';
-                
                 postActions.appendChild(replyCount);
                 
-                // Append all elements
                 newPost.appendChild(postHeader);
                 newPost.appendChild(postContent);
                 newPost.appendChild(postActions);
                 
-                // Add divider before new post
                 const divider = document.createElement('div');
                 divider.className = 'post-divider';
                 
                 forumPosts.insertBefore(divider, forumPosts.firstChild);
                 forumPosts.insertBefore(newPost, forumPosts.firstChild);
                 
-                // Clear input
                 input.value = '';
             }
         });
 
-        // Simulate emotion detection when typing in the post input
+        // Simulate emotion detection when typing
         document.querySelector('.post-input input').addEventListener('input', function(e) {
             const text = e.target.value.toLowerCase();
             let emotionDetected = '';
             
-            // Simple emotion detection based on keywords
             if (text.includes('happy') || text.includes('joy') || text.includes('excited')) {
                 emotionDetected = 'Happiness detected';
             } else if (text.includes('sad') || text.includes('upset') || text.includes('depressed')) {
@@ -217,9 +205,9 @@
             
             if (emotionDetected && text.length > 10) {
                 console.log(emotionDetected);
-                // In a real app, this would update the UI to show the detected emotion
             }
         });
     </script>
+
 </body>
 </html>

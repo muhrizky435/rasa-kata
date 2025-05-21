@@ -11,6 +11,22 @@ body {
     background-color: #ffffff;
     color: #37474f;
     overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #345fbe;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 0;
 }
 
 .container {
@@ -26,6 +42,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 0;
+    flex-wrap: wrap;
 }
 
 .logo {
@@ -82,12 +99,12 @@ nav {
     cursor: pointer;
     text-align: center;
     margin-left: 15px;
+    border: none;
 }
 
 .btn-primary {
     background-color: #81a1e9;
     color: #f5f5f5;
-    border: none;
 }
 
 .btn-outline {
@@ -102,60 +119,95 @@ nav {
     flex-direction: column;
     align-items: center;
     padding: 50px 0;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.emotion-circle {
     position: relative;
+    width: 720px;
+    height: 720px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.feature-diagram-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Animasi rotasi dihapus */
 }
 
 .feature-diagram {
-    width: 500px;
-    height: 500px;
-    margin-bottom: 30px;
+    width: 85%;
+    height: auto;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .feature-tag {
     position: absolute;
-    background-color: #ffffff;
-    padding: 7px 10px;
-    border-radius: 10px;
+    background-color: transparent;
+    padding: 5px 15px;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 20px;
-    color: #345fbe;
-    line-height: 25px;
+    font-size: 25px;
+    color: #1E3A8A;
+    line-height: 22px;
+    white-space: nowrap;
+    text-align: center;
+    transform: translate(-50%, -50%);
 }
 
+/* Posisi tag berdasarkan lingkaran concentric (disesuaikan dengan gambar) */
 .tag-detection {
-    top: 318px;
-    left: calc(50% - 250px + 282px);
+    top: 50%;
+    left: 5%;
 }
 
 .tag-visualization {
-    top: 221px;
-    left: calc(50% + 11px);
+    top: 25%;
+    left: 50%;
 }
 
 .tag-tracking {
-    top: 318px;
-    left: calc(50% + 220px);
+    top: 50%;
+    left: 95%;
 }
 
 .tag-feedback {
-    top: 543px;
-    left: calc(50% + 294px);
+    top: 75%;
+    left: 80%;
 }
 
 .tag-posting {
-    top: 536px;
-    left: calc(50% - 294px);
+    top: 75%;
+    left: 20%;
 }
 
 .hero-title {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 45px;
-    line-height: 55px;
+    font-size: 36px;
+    line-height: 44px;
     text-align: center;
-    margin-bottom: 20px;
-    max-width: 939px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-title span {
+    font-weight: 700;
+    background: linear-gradient(90deg, #345fbe 0%, #b55eaf 50%, #ffa5c5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .highlight {
@@ -203,6 +255,7 @@ nav {
     justify-content: center;
     gap: 40px;
     margin-top: 40px;
+    flex-wrap: wrap;
 }
 
 .feature-card {
@@ -234,14 +287,6 @@ nav {
     text-align: left;
 }
 
-.feature-card-right .feature-card-description {
-    text-align: left;
-}
-
-.feature-card-left .feature-card-description {
-    text-align: right;
-}
-
 .feature-divider {
     width: 3px;
     height: 187px;
@@ -254,6 +299,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .tracking-graph {
@@ -286,6 +332,7 @@ nav {
     line-height: 45px;
     color: #37474f;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .forum-description {
@@ -348,7 +395,7 @@ nav {
 
 .post-header {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     margin-bottom: 10px;
 }
 
@@ -366,7 +413,6 @@ nav {
     font-size: 15px;
     line-height: 19px;
     color: #979a9b;
-    margin-bottom: 10px;
 }
 
 .post-content {
@@ -486,6 +532,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .footer-logo {
@@ -506,7 +553,66 @@ footer {
     color: #37474f;
 }
 
+/* Responsive Design */
 @media (max-width: 1024px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .nav-links {
+        margin: 15px 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 20px;
+        margin: 10px;
+    }
+
+    .auth-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .btn {
+        font-size: 20px;
+        margin: 10px;
+        width: auto;
+    }
+
+    .emotion-circle {
+        width: 500px;
+        height: 500px;
+    }
+
+    .feature-tag {
+        font-size: 16px;
+        padding: 4px 8px;
+    }
+
+    .tag-detection { left: 5%; }
+    .tag-visualization { top: 25%; left: 50%; }
+    .tag-tracking { left: 95%; }
+    .tag-feedback { top: 75%; left: 80%; }
+    .tag-posting { top: 75%; left: 20%; }
+
+    .hero-title {
+        font-size: 30px;
+        line-height: 38px;
+    }
+
+    .highlight {
+        font-size: 38px;
+        line-height: 46px;
+    }
+
     .feature-cards {
         flex-direction: column;
         align-items: center;
@@ -521,69 +627,309 @@ footer {
     .emotion-tracking {
         flex-direction: column;
         text-align: center;
+        gap: 30px;
     }
 
     .tracking-graph {
+        width: 350px;
+        height: auto;
         margin-bottom: 30px;
+    }
+
+    .tracking-title {
+        font-size: 38px;
+        line-height: 40px;
+    }
+
+    .forum-container {
+        max-width: 100%;
+    }
+
+    .cta-section {
+        padding: 40px;
+        margin: 40px 15px;
     }
 }
 
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
+    .logo img {
+        width: 50px;
+        height: 52px;
     }
 
-    .nav-links {
-        margin: 20px 0;
+    .logo-text {
+        font-size: 28px;
+        line-height: 52px;
     }
 
-    .hero-title {
-        font-size: 36px;
-        line-height: 44px;
+    .nav-links a {
+        font-size: 18px;
+        margin: 8px;
     }
 
-    .highlight {
-        font-size: 36px;
-        line-height: 44px;
+    .btn {
+        font-size: 18px;
+        padding: 8px 16px;
     }
 
-    .feature-diagram {
-        width: 300px;
-        height: 300px;
+    .emotion-circle {
+        width: 400px;
+        height: 400px;
     }
 
     .feature-tag {
-        font-size: 16px;
-        padding: 5px 8px;
+        font-size: 14px;
+        padding: 3px 6px;
     }
 
-    .tag-detection {
-        top: 218px;
-        left: calc(50% - 150px + 182px);
+    .tag-detection { left: 5%; }
+    .tag-visualization { top: 25%; left: 50%; }
+    .tag-tracking { left: 95%; }
+    .tag-feedback { top: 75%; left: 80%; }
+    .tag-posting { top: 75%; left: 20%; }
+
+    .hero-title {
+        font-size: 26px;
+        line-height: 34px;
     }
 
-    .tag-visualization {
-        top: 161px;
-        left: calc(50% + 11px);
+    .highlight {
+        font-size: 34px;
+        line-height: 42px;
     }
 
-    .tag-tracking {
-        top: 218px;
-        left: calc(50% + 120px);
+    .feature-title {
+        font-size: 26px;
+        line-height: 32px;
     }
 
-    .tag-feedback {
-        top: 343px;
-        left: calc(50% + 194px);
+    .feature-description {
+        font-size: 18px;
+        line-height: 22px;
     }
 
-    .tag-posting {
-        top: 336px;
-        left: calc(50% - 194px);
+    .feature-card-title {
+        font-size: 20px;
+        line-height: 22px;
+    }
+
+    .feature-card-description {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .tracking-title {
+        font-size: 34px;
+        line-height: 36px;
+    }
+
+    .forum-title {
+        font-size: 34px;
+        line-height: 36px;
+    }
+
+    .forum-description {
+        font-size: 18px;
+        line-height: 18px;
+    }
+
+    .post-author {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .post-time {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .post-content {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .cta-title {
+        font-size: 26px;
+        line-height: 32px;
+    }
+
+    .cta-description {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .cta-button-text {
+        font-size: 18px;
+        line-height: 18px;
+    }
+
+    .footer-text {
+        font-size: 18px;
+        line-height: 22px;
     }
 
     .footer-content {
         flex-direction: column;
         gap: 20px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .logo img {
+        width: 40px;
+        height: 42px;
+    }
+
+    .logo-text {
+        font-size: 24px;
+        line-height: 42px;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+        margin: 6px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 6px 12px;
+        margin: 5px;
+    }
+
+    .emotion-circle {
+        width: 300px;
+        height: 300px;
+    }
+
+    .feature-tag {
+        font-size: 12px;
+        padding: 2px 4px;
+    }
+
+    .tag-detection { left: 5%; }
+    .tag-visualization { top: 25%; left: 50%; }
+    .tag-tracking { left: 95%; }
+    .tag-feedback { top: 75%; left: 80%; }
+    .tag-posting { top: 75%; left: 20%; }
+
+    .hero-title {
+        font-size: 22px;
+        line-height: 28px;
+    }
+
+    .highlight {
+        font-size: 28px;
+        line-height: 34px;
+    }
+
+    .feature-title {
+        font-size: 22px;
+        line-height: 28px;
+    }
+
+    .feature-description {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .feature-card-title {
+        font-size: 18px;
+        line-height: 20px;
+    }
+
+    .feature-card-description {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .tracking-graph {
+        width: 100%;
+        height: auto;
+    }
+
+    .tracking-title {
+        font-size: 28px;
+        line-height: 30px;
+    }
+
+    .forum-title {
+        font-size: 28px;
+        line-height: 30px;
+    }
+
+    .forum-description {
+        font-size: 16px;
+        line-height: 16px;
+    }
+
+    .post-input {
+        height: 48px;
+    }
+
+    .post-input input {
+        font-size: 14px;
+    }
+
+    .post-input button {
+        font-size: 14px;
+    }
+
+    .post-author {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .post-time {
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    .post-content {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .post-reply-count {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .reply-content {
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+    .cta-section {
+        padding: 30px;
+        margin: 30px 10px;
+    }
+
+    .cta-title {
+        font-size: 22px;
+        line-height: 28px;
+    }
+
+    .cta-description {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+    }
+
+    .cta-button-text {
+        font-size: 16px;
+        line-height: 16px;
+    }
+
+    .footer-text {
+        font-size: 16px;
+        line-height: 20px;
     }
 }
