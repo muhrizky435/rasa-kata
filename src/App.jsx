@@ -6,6 +6,8 @@ import Curhat from './pages/Curhat'
 import Curhat_hasil from './pages/Curhat_hasil'
 import Feed from './pages/Feed'
 import FeedDetail from './pages/feedDetail'
+import Register from './pages/Register'
+import LandingPage from './pages/landing-page/Landing_page'
 
 // Protected route component that redirects to login if not authenticated
 const ProtectedRoute = ({ children }) => {
@@ -33,6 +35,8 @@ function App() {
         <Routes>
           {/* Public routes */}
           <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/landing_page" element={<LandingPage />} />
           
           {/* Protected routes */}
           <Route 

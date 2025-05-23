@@ -82,7 +82,7 @@
 .login-btn {
   width: 100%;
   padding: 12px;
-  background-color: #2d3748;
+  background-color: #6b46c1;
   color: white;
   font-weight: bold;
   border: none;
@@ -138,6 +138,113 @@
   border: 1px solid #6b46c1;
   background-color: #fff;
 }
+
+
+/* Register card menggunakan struktur login-card */
+.register-card {
+  display: flex;
+  width: 900px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.register-left {
+  padding: 40px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.register-form .input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  padding: 10px;
+  background: #f9f9f9;
+}
+
+.register-form .input-group input {
+  border: none;
+  background: transparent;
+  flex: 1;
+  font-size: 14px;
+  outline: none;
+  padding-left: 30px;
+}
+
+.register-form .input-icon {
+  position: absolute;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.register-form .eye-icon {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #6b46c1;
+}
+
+.register-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #6b46c1;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.register-btn:hover {
+  background-color: #553c9a;
+}
+
+.register-text {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.register-link {
+  color: #6b46c1;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.error-message {
+  background-color: #ffe1e1;
+  color: #c53030;
+  border: 1px solid #feb2b2;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .register-card {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .register-left,
+  .register-right {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+
 
 /* responsive */
 @media (max-width: 768px) {

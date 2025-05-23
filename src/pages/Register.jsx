@@ -2,23 +2,24 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import "../assets/styles/login.css";
-import rocketImg from "../assets/img/rocket.png";
+import rocketImg from "../assets/img/rocket2.png";
 import rasaKataImg from "../assets/img/logo-rasa-kata.png";
 import lockIcon from "../assets/img/lockIcon.png";
 import keyIcon from "../assets/img/keyIcon.png";
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { login, isAuthenticated, loading } = useAuth();
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { register, isAuthenticated, loading } = useAuth();
   const navigate = useNavigate();
 
-  // Redirect to feed if already logged in
   React.useEffect(() => {
     if (isAuthenticated && !loading) {
-      navigate("/feed");
+      navigate("/");
     }
   }, [isAuthenticated, loading, navigate]);
 
@@ -26,30 +27,35 @@ const Login = () => {
     e.preventDefault();
     setErrorMessage("");
 
+    if (password !== confirmPassword) {
+      setErrorMessage("Password dan konfirmasi tidak cocok.");
+      return;
+    }
+
     try {
-      await login({ email, password });
-      navigate("/feed");
+      await register({ email, password });
+      navigate("/");
     } catch (error) {
-      setErrorMessage(error.message || "Login failed. Please try again.");
+      setErrorMessage(error.message || "Registrasi gagal. Silakan coba lagi.");
     }
   };
 
   return (
     <div className="container">
-      <div className="login-card">
+      <div className="register-card">
         {/* Kiri - Form */}
-        <div className="login-left">
+        <div className="register-left">
           <img src={rasaKataImg} alt="Logo Rasa Kata" className="logo" />
-          <h2 className="welcome-title">Selamat Datang 👋</h2>
+          <h2 className="welcome-title">Buat Akun Baru 🚀</h2>
           <p className="welcome-text">
-            Tempat di mana kata-kata jadi jendela emosimu.
+            Mulailah perjalanan baru memahami dirimu.
             <br />
-            Mari lanjutkan perjalanan memahami dirimu sendiri.
+            Daftarkan dirimu dan jadilah bagian dari kami.
           </p>
 
           {errorMessage && <div className="error-message">{errorMessage}</div>}
 
-          <form onSubmit={handleSubmit} className="login-form">
+          <form onSubmit={handleSubmit} className="register-form">
             <div className="input-group">
               <img src={lockIcon} alt="Lock Icon" className="input-icon" />
               <input
@@ -78,20 +84,34 @@ const Login = () => {
                 {showPassword ? "🚫" : "👁️"}
               </span>
             </div>
+            <div className="input-group">
+              <img src={keyIcon} alt="Key Icon" className="input-icon" />
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Konfirmasi Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+              <span
+                className="eye-icon"
+                onClick={() => setShowConfirmPassword((prev) => !prev)}
+                title={showConfirmPassword ? "Sembunyikan" : "Tampilkan"}
+                style={{ userSelect: "none" }}
+              >
+                {showConfirmPassword ? "🚫" : "👁️"}
+              </span>
+            </div>
 
-            <a href="#" className="forgot-link">
-              Lupa Password?
-            </a>
-
-            <button type="submit" className="login-btn" disabled={loading}>
-              {loading ? "Logging in..." : "Login"}
+            <button type="submit" className="register-btn" disabled={loading}>
+              {loading ? "Mendaftarkan..." : "Daftar"}
             </button>
           </form>
 
           <p className="register-text">
-            Belum punya akun?{" "}
-            <Link to="/register" className="register-link">
-              Daftar di sini
+            Sudah punya akun?{" "}
+            <Link to="/" className="register-link">
+              Login di sini
             </Link>
           </p>
         </div>
@@ -105,4 +125,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
