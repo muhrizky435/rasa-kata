@@ -38,6 +38,16 @@ const postService = {
         }
     },
 
+    getStoryByUsername: async (username) => {
+        try {
+            const response = await axios.get(`/story/${username}/username`);
+            return response.data;
+        } catch (error) {
+            console.error(`Error fetching story for ${username}:`, error);
+            throw error;
+        }
+    },
+
     /**
      * Create a new story post
      * @param {Object} storyData - The story data to post

@@ -35,6 +35,7 @@
   display: flex;
   flex: 1;
   align-items: center;
+  justify-content: space-between;
 }
 
 .create-post-input {
@@ -90,6 +91,18 @@
   padding: 16px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   font-size: small;
+}
+
+.no-comments-message {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.mobile-no-comments-message {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-left: 10px;
 }
 
 .comments-container .post-card {

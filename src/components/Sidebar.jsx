@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../assets/styles/sidebar.css";
 import { Link, useLocation } from "react-router-dom";
 import logoIcon from "../assets/img/logoIcon.png";
@@ -31,7 +31,7 @@ const Sidebar = () => {
       if (result.isConfirmed) {
         // Perform logout action here
         authService.logout();
-        window.location.href = "/";
+        window.location.href = "/login";
       }
     });
   }
