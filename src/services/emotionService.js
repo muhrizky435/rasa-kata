@@ -15,6 +15,26 @@ const emotionService = {
       throw error;
     }
   },
+
+  saveEmotion: async (emotionData) => {
+    try {
+      const response = await axios.post(`/emotion`, emotionData);
+      return response.data;
+    } catch (error) {
+      console.error("Error saving emotion:", error);
+      throw error;
+    }
+  },
+
+  getEmotionData: async (userId) => {
+    try {
+      const response = await axios.get(`/emotion/${userId}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching emotion data:", error);
+      throw error;
+    }
+  },
 };
 
 export default emotionService;

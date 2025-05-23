@@ -5,7 +5,6 @@ import Sidebar from "../components/Sidebar";
 import postService from "../services/postService";
 import { formatRelativeTime } from "../utils/timeUtils";
 import { Loading } from "../components/Loading";
-import { Logo } from "../components/Logo";
 
 const FeedDetail = () => {
   const [post, setPost] = useState({});
@@ -72,9 +71,8 @@ const FeedDetail = () => {
     return (<div>
       <Sidebar />
       <main className="mobile-main-content">
-        <Logo />
 
-        <h2 className="mobile-page-title">Curhatan 'username'</h2>
+        <h2 className="mobile-page-title">Curhatan {post.anonymous_username}</h2>
         {isLoading ? (
           <Loading />) : error ? (
             <div className="error-message">{error}</div>) : (
@@ -83,7 +81,7 @@ const FeedDetail = () => {
               <div className="mobile-post-header">
                 <div className="mobile-post-avatar">?</div>
                 <div>
-                  <div className="mobile-post-author">Anonymous</div>
+                  <div className="mobile-post-author">{post.anonymous_username}</div>
                   <div className="mobile-post-time">{formatRelativeTime(post.created_at)}</div>
                 </div>
               </div>
@@ -141,7 +139,7 @@ const FeedDetail = () => {
     <div className="app-container feed-page">
       <Sidebar />
       <main className="main-content">
-        <h2 className="mobile-page-title">Curhatan 'username'</h2>
+        <h2 className="mobile-page-title">Curhatan {post.anonymous_username}</h2>
         {isLoading ? (
           <Loading />
         ) : error ? (
@@ -152,7 +150,7 @@ const FeedDetail = () => {
               <div className="post-header">
                 <div className="post-avatar">?</div>
                 <div>
-                  <div className="post-author">Anonymous</div>
+                  <div className="post-author">{post.anonymous_username}</div>
                   <div className="post-time">{formatRelativeTime(post.created_at)}</div>
                 </div>
               </div>
@@ -171,7 +169,7 @@ const FeedDetail = () => {
                     <div className="post-header">
                       <div className="post-avatar">?</div>
                       <div>
-                        <div className="post-author">Anonymous</div>
+                        <div className="post-author">{post.anonymous_username}</div>
                         <div className="post-time">{formatRelativeTime(comment.created_at)}</div>
                       </div>
                     </div>

@@ -18,7 +18,7 @@ const Login = () => {
   // Redirect to feed if already logged in
   React.useEffect(() => {
     if (isAuthenticated && !loading) {
-      navigate("/feed");
+      navigate("/dashboard");
     }
   }, [isAuthenticated, loading, navigate]);
 
@@ -28,7 +28,7 @@ const Login = () => {
 
     try {
       await login({ email, password });
-      navigate("/feed");
+      navigate("/dashboard");
     } catch (error) {
       setErrorMessage(error.message || "Login failed. Please try again.");
     }

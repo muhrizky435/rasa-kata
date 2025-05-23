@@ -252,3 +252,16 @@
   color: #666;
   margin-left:auto;
 }
+
+@media (max-width: 768px) {
+  .dashboard-sections {
+    padding-bottom: 35px;
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-layout {
+    padding: 0;
+    gap: 0;
+    flex-direction: column;
+  }
+}

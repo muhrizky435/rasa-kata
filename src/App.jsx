@@ -20,7 +20,7 @@ const ProtectedRoute = ({ children }) => {
   
   // Redirect to login if not authenticated
   if (!isAuthenticated) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login" replace />;
   }
   
   // Render the protected content if authenticated
@@ -34,9 +34,13 @@ function App() {
       <Router>
         <Routes>
           {/* Public routes */}
+<<<<<<< HEAD
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/landing_page" element={<LandingPage />} />
+=======
+          <Route path="/login" element={<Login />} />
+>>>>>>> fe6e409a27249ef3b61f7807789827b38a2512df
           
           {/* Protected routes */}
           <Route 

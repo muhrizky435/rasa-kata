@@ -6,14 +6,17 @@ import { formatRelativeTime } from "../utils/timeUtils";
 import { Link } from "react-router-dom";
 import { Loading } from "../components/Loading";
 import { Logo } from "../components/Logo";
+import authService from "../services/authService";
 
 const Feed = () => {
   const [postContent, setPostContent] = useState("");
   const [posts, setPosts] = useState([]);
   const [bestPosts, setBestPosts] = useState([]);
+  const [myPosts, setMyPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const user = authService.getCurrentUser();
   // Fetch all posts when component mounts
   useEffect(() => {
     const fetchPosts = async () => {
@@ -27,6 +30,9 @@ const Feed = () => {
         const sortedPosts = postsToBeSorted.sort((a, b) => b.commentsCount - a.commentsCount);
         setBestPosts([sortedPosts[0], sortedPosts[1], sortedPosts[2]]);
 
+        const myPosts = postsToBeSorted.filter((post) => post.anonymous_username === user.anonymous_username);
+        setMyPosts(myPosts);
+
         
         setError(null);
       } catch (err) {
@@ -38,7 +44,7 @@ const Feed = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [user.anonymous_username]);
 
   const handlePostSubmit = async (e) => {
     e.preventDefault();
@@ -73,7 +79,6 @@ const Feed = () => {
     <div className="app-container feed-page">
       <Sidebar />
       <main className="main-content">
-        <Logo />
         <h2 className="page-title">Curhat Anonim</h2>
         {/* Post Input */}
         <div className="create-post-container">
@@ -156,27 +161,29 @@ const Feed = () => {
               </div>
               <div className="my-posts" style={{ paddingBottom: "80px"}}>
                 <h3>My posts</h3>
-                <div className="post-card">
-                  <div className="post-header">
-                    <div className="post-avatar">
-                      ?
-                    </div>
-                    <div>
-                      <div className="post-author">Anonymous</div>
-                      <div className="post-time">
-                        4 jam yang lalu
+                {myPosts.map((post) => (
+                  <div key={post.id} className="post-card">
+                    <div className="post-header">
+                      <div className="post-avatar">
+                        {post.username ? post.username[0] : "?"}
+                      </div>
+                      <div>
+                        <div className="post-author">{post.anonymous_username}</div>
+                        <div className="post-time">
+                          {formatRelativeTime(post.created_at)}
+                        </div>
                       </div>
                     </div>
+                    <div className="post-content">{post.content}</div>
+                    <div className="post-footer">
+                      <Link to={`/feed/${post.id}`}>
+                        <button className="post-reply-button">
+                          {post.commentsCount} balasan
+                        </button>
+                      </Link>
+                    </div>
                   </div>
-                  <div className="post-content">sakdfjask;fjkasdjfkasdjf kasjfksajfkl;jas kfjskdfjsdklfjasdkfjklsd jfksjfjifowjeifojweifjw eifhjjkvnksnfkewj</div>
-                  <div className="post-footer">
-                    <Link to={`/feed/1`}>
-                      <button className="post-reply-button">
-                        34 balasan
-                      </button>
-                    </Link>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
