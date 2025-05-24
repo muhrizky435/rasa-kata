@@ -34,13 +34,9 @@ function App() {
       <Router>
         <Routes>
           {/* Public routes */}
-<<<<<<< HEAD
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/landing_page" element={<LandingPage />} />
-=======
           <Route path="/login" element={<Login />} />
->>>>>>> fe6e409a27249ef3b61f7807789827b38a2512df
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<LandingPage />} />
           
           {/* Protected routes */}
           <Route 

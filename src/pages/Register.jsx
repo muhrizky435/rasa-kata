@@ -110,7 +110,7 @@ const Register = () => {
 
           <p className="register-text">
             Sudah punya akun?{" "}
-            <Link to="/" className="register-link">
+            <Link to="/login" className="register-link">
               Login di sini
             </Link>
           </p>

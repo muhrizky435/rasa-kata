@@ -14,7 +14,7 @@ const LandingPage = () => {
   const [posts, setPosts] = useState([
     {
       id: 1,
-      author: "HanifAnonim",
+      author: "Anonymous",
       time: "2 jam lalu",
       content:
         "Why are the poorest states in America nearly all Republican? Why are the richest states nearly all Democrat?",
@@ -74,7 +74,7 @@ const LandingPage = () => {
               </a>
             </div>
             <div className="auth-buttons">
-              <Link to="/">
+              <Link to="/login">
                 <button className="btn btn-primary" aria-label="Login">
                   Login
                 </button>
