@@ -198,7 +198,7 @@ const LandingPage = () => {
               {posts.map((post) => (
                 <div key={post.id}>
                   <div className="post">
-                    <div className="post-header">
+                    <div className="post-heading">
                       <div className="post-author">{post.author}</div>
                       <div className="post-time">{post.time}</div>
                     </div>

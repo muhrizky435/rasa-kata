@@ -137,7 +137,6 @@ const FeedDetail = () => {
 
   return (
     <div className="app-container feed-page">
-      <Sidebar />
       <main className="main-content">
         <h2 className="mobile-page-title">Curhatan {post.anonymous_username}</h2>
         {isLoading ? (

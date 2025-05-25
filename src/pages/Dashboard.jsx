@@ -94,163 +94,161 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="app-container">
-      <Sidebar />
-      <main className="main-content dashboard-content">
-        <h1 className="dashboard-title">Dashboard</h1>
 
-        <div className="welcome-layout">
-          {/* Welcome Text Section */}
-          <div className="welcome-section">
-            <h2 className="welcome-heading">
-              Selamat datang, <span className="highlight-name">{user.name}!</span>
-            </h2>
-            <p className="welcome-paragraph">
-              Perasaan seseorang adalah sebuah hal yang seharusnya tidak dipendam sendirian. Jika terasa berat untuk bercerita kepada orang lain, kamu bisa bercerita kepada kami. Kami siap mendengarkanmu.
-            </p>
-            <div className="welcome-buttons">
-              <Link to="/curhat"><button className="btn primary-btn">Curhat</button></Link>
-              <Link to="/feed"><button className="btn secondary-btn">Bagikan Ceritamu</button></Link>
-            </div>
-          </div>
+    <main className="main-content dashboard-content">
+      <h1 className="dashboard-title">Dashboard</h1>
 
-          <div className="vertical-divider"></div>
-          {/* Mood Section */}
-          <div className="mood-section">
-            <div className="mood-illustration">
-              <img src={Icon} alt="Mood illustration" />
-            </div>
-            <h3 className="mood-heading">Bagaimana perasaanmu?</h3>
-            <p className="mood-paragraph">
-              Jejak perasaanmu terakhir kali itu sedih, bagaimana dengan hari
-              ini?
-            </p>
-            <a href="#metrik">
-              <button className="btn mood-btn">Lihat Perkembangan emosimu</button>
-            </a>
+      <div className="welcome-layout">
+        {/* Welcome Text Section */}
+        <div className="welcome-section">
+          <h2 className="welcome-heading">
+            Selamat datang, <span className="highlight-name">{user.name}!</span>
+          </h2>
+          <p className="welcome-paragraph">
+            Perasaan seseorang adalah sebuah hal yang seharusnya tidak dipendam sendirian. Jika terasa berat untuk bercerita kepada orang lain, kamu bisa bercerita kepada kami. Kami siap mendengarkanmu.
+          </p>
+          <div className="welcome-buttons">
+            <Link to="/curhat"><button className="btn primary-btn">Curhat</button></Link>
+            <Link to="/feed"><button className="btn secondary-btn">Bagikan Ceritamu</button></Link>
           </div>
         </div>
 
-        <div className="divider"></div>
-        <div className="metrics-title">
-          <h2>Metrik</h2>
+        <div className="vertical-divider"></div>
+        {/* Mood Section */}
+        <div className="mood-section">
+          <div className="mood-illustration">
+            <img src={Icon} alt="Mood illustration" />
+          </div>
+          <h3 className="mood-heading">Bagaimana perasaanmu?</h3>
+          <p className="mood-paragraph">
+            Jejak perasaanmu terakhir kali itu sedih, bagaimana dengan hari
+            ini?
+          </p>
+          <a href="#metrik">
+            <button className="btn mood-btn">Lihat Perkembangan emosimu</button>
+          </a>
         </div>
-        {isLoading ? (<Loading />) : (
-          <>
-            <div className="stats-grid" id="metrik">
-              <div className="stat-card pink">
-                <div className="stat-header">
-                  <h3 className="stat-label">Jumlah Curhat sesi</h3>
-                </div>
-                <div className="stat-content">
-                  <span className="stat-checkmark">✓</span>
-                  <h3 className="stat-value">{emotionData.length}</h3>
-                </div>
-              </div>
+      </div>
 
-              <div className="stat-card blue">
-                <div className="stat-header">
-                  <h3 className="stat-label">Jumlah Cerita</h3>
-                </div>
-                <div className="stat-content">
-                  <h3 className="stat-value">{storiesData.length}</h3>
-                  <span className="stat-unit">cerita</span>
-                </div>
+      <div className="divider"></div>
+      <div className="metrics-title">
+        <h2>Metrik</h2>
+      </div>
+      {isLoading ? (<Loading />) : (
+        <>
+          <div className="stats-grid" id="metrik">
+            <div className="stat-card pink">
+              <div className="stat-header">
+                <h3 className="stat-label">Jumlah Curhat sesi</h3>
               </div>
-
-              <div className="stat-card green">
-                <div className="stat-header">
-                  <h3 className="stat-label">Rekor Pengguna</h3>
-                </div>
-                <div className="stat-content">
-                  <h3 className="stat-value">{getStreakDay(emotionData)}</h3>
-                  <span className="stat-unit">Hari</span>
-                </div>
+              <div className="stat-content">
+                <span className="stat-checkmark">✓</span>
+                <h3 className="stat-value">{emotionData.length}</h3>
               </div>
             </div>
-            <div className="dashboard-sections">
-              {/* Emotion Pie Chart */}
-              <div className="emotion-pie-container">
-                <div className="emotion-pie-chart">
-                  <svg viewBox="0 0 400 400" className="pie-chart">
-                    <circle cx="200" cy="200" r="160" fill="#f0f0f0" />
 
-                    {/* We'll render segments programmatically */}
-                    {emotionStats.map((emotion, index) => {
-                      // Calculate the percentage and angles for SVG arc
-                      // const percentage = (emotion.value / totalSum) * 100;
-                      const startAngle =
-                        index === 0
-                          ? 0
-                          : emotionStats
-                            .slice(0, index)
-                            .reduce(
-                              (sum, item) => sum + (item.value / totalSum) * 360,
-                              0
-                            );
-                      const endAngle =
-                        startAngle + (emotion.value / totalSum) * 360;
-
-                      // Convert angles to radians for SVG path
-                      const startRad = ((startAngle - 90) * Math.PI) / 180;
-                      const endRad = ((endAngle - 90) * Math.PI) / 180;
-
-                      // Calculate SVG path
-                      const x1 = 200 + 160 * Math.cos(startRad);
-                      const y1 = 200 + 160 * Math.sin(startRad);
-                      const x2 = 200 + 160 * Math.cos(endRad);
-                      const y2 = 200 + 160 * Math.sin(endRad);
-
-                      // Determine if the arc should be drawn the long way around
-                      const largeArcFlag = endAngle - startAngle > 180 ? 1 : 0;
-
-                      // Create the SVG path
-                      const path = `M 200 200 L ${x1} ${y1} A 160 160 0 ${largeArcFlag} 1 ${x2} ${y2} Z`;
-
-                      return (
-                        <path key={emotion.name} d={path} fill={emotion.color} />
-                      );
-                    })}
-                  </svg>
-                </div>
-
-                <div className="emotion-labels">
-                  {emotionStats.map((emotion) => (
-                    <div key={emotion.name} className="emotion-label-item">
-                      <div
-                        className="emotion-color-dot"
-                        style={{ backgroundColor: emotion.color }}
-                      ></div>
-                      <span className="emotion-name">{emotion.name}</span>
-                      <span className="emotion-value">{emotion.value}</span>
-                    </div>
-                  ))}
-                </div>
+            <div className="stat-card blue">
+              <div className="stat-header">
+                <h3 className="stat-label">Jumlah Cerita</h3>
               </div>
-              {/* Recent Emotion Logs */}
-              <div className="emotion-logs-container">
-                <h3 className="logs-title">Lihat Jejak Emosimu</h3>
-                <div className="emotion-logs">
-                  {emotionData.map((emotion) => {
-                    const translatedEmotion = emotionTranslator(emotion.emotion_code);
+              <div className="stat-content">
+                <h3 className="stat-value">{storiesData.length}</h3>
+                <span className="stat-unit">cerita</span>
+              </div>
+            </div>
+
+            <div className="stat-card green">
+              <div className="stat-header">
+                <h3 className="stat-label">Rekor Pengguna</h3>
+              </div>
+              <div className="stat-content">
+                <h3 className="stat-value">{getStreakDay(emotionData)}</h3>
+                <span className="stat-unit">Hari</span>
+              </div>
+            </div>
+          </div>
+          <div className="dashboard-sections">
+            {/* Emotion Pie Chart */}
+            <div className="emotion-pie-container">
+              <div className="emotion-pie-chart">
+                <svg viewBox="0 0 400 400" className="pie-chart">
+                  <circle cx="200" cy="200" r="160" fill="#f0f0f0" />
+
+                  {/* We'll render segments programmatically */}
+                  {emotionStats.map((emotion, index) => {
+                    // Calculate the percentage and angles for SVG arc
+                    // const percentage = (emotion.value / totalSum) * 100;
+                    const startAngle =
+                      index === 0
+                        ? 0
+                        : emotionStats
+                          .slice(0, index)
+                          .reduce(
+                            (sum, item) => sum + (item.value / totalSum) * 360,
+                            0
+                          );
+                    const endAngle =
+                      startAngle + (emotion.value / totalSum) * 360;
+
+                    // Convert angles to radians for SVG path
+                    const startRad = ((startAngle - 90) * Math.PI) / 180;
+                    const endRad = ((endAngle - 90) * Math.PI) / 180;
+
+                    // Calculate SVG path
+                    const x1 = 200 + 160 * Math.cos(startRad);
+                    const y1 = 200 + 160 * Math.sin(startRad);
+                    const x2 = 200 + 160 * Math.cos(endRad);
+                    const y2 = 200 + 160 * Math.sin(endRad);
+
+                    // Determine if the arc should be drawn the long way around
+                    const largeArcFlag = endAngle - startAngle > 180 ? 1 : 0;
+
+                    // Create the SVG path
+                    const path = `M 200 200 L ${x1} ${y1} A 160 160 0 ${largeArcFlag} 1 ${x2} ${y2} Z`;
+
                     return (
-                      <div key={emotion.id} className="emotion-log-item">
-                        <div
-                          className="emotion-log-dot"
-                          style={{ backgroundColor: translatedEmotion.color }}
-                        ></div>
-                        <span className="emotion-log-name">{translatedEmotion.emotion}</span>
-                        <span className="emotion-log-time">{formatRelativeTime(emotion.created_at)}</span>
-                      </div>
-                    )
+                      <path key={emotion.name} d={path} fill={emotion.color} />
+                    );
                   })}
-                </div>
+                </svg>
+              </div>
+
+              <div className="emotion-labels">
+                {emotionStats.map((emotion) => (
+                  <div key={emotion.name} className="emotion-label-item">
+                    <div
+                      className="emotion-color-dot"
+                      style={{ backgroundColor: emotion.color }}
+                    ></div>
+                    <span className="emotion-name">{emotion.name}</span>
+                    <span className="emotion-value">{emotion.value}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          </>
-        )}
-      </main>
-    </div>
+            {/* Recent Emotion Logs */}
+            <div className="emotion-logs-container">
+              <h3 className="logs-title">Lihat Jejak Emosimu</h3>
+              <div className="emotion-logs">
+                {emotionData.map((emotion) => {
+                  const translatedEmotion = emotionTranslator(emotion.emotion_code);
+                  return (
+                    <div key={emotion.id} className="emotion-log-item">
+                      <div
+                        className="emotion-log-dot"
+                        style={{ backgroundColor: translatedEmotion.color }}
+                      ></div>
+                      <span className="emotion-log-name">{translatedEmotion.emotion}</span>
+                      <span className="emotion-log-time">{formatRelativeTime(emotion.created_at)}</span>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </main>
   );
 };
 

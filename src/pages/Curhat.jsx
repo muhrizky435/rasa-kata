@@ -44,8 +44,7 @@ function CurhatPage() {
   };
 
   return (
-    <div className="app-container curhat-page">
-      <Sidebar />
+    <div className="app-container">
       <main className="main-content">
         <header className="page-header">
           <h1 className="page-title">Mulai Curhat</h1>

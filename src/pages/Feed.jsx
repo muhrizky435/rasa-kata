@@ -77,7 +77,6 @@ const Feed = () => {
 
   return (
     <div className="app-container feed-page">
-      <Sidebar />
       <main className="main-content">
         <h2 className="page-title">Curhat Anonim</h2>
         {/* Post Input */}
