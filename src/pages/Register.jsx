@@ -8,6 +8,7 @@ import lockIcon from "../assets/img/lockIcon.png";
 import keyIcon from "../assets/img/keyIcon.png";
 
 const Register = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -33,8 +34,8 @@ const Register = () => {
     }
 
     try {
-      await register({ email, password });
-      navigate("/");
+      await register({ name, email, password });
+      navigate("/login");
     } catch (error) {
       setErrorMessage(error.message || "Registrasi gagal. Silakan coba lagi.");
     }
@@ -56,6 +57,16 @@ const Register = () => {
           {errorMessage && <div className="error-message">{errorMessage}</div>}
 
           <form onSubmit={handleSubmit} className="register-form">
+            <div className="input-group">
+              <img src={lockIcon} alt="Lock Icon" className="input-icon" />
+              <input
+                type="text"
+                placeholder="Nama"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
             <div className="input-group">
               <img src={lockIcon} alt="Lock Icon" className="input-icon" />
               <input
