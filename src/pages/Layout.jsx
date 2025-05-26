@@ -65,9 +65,9 @@ const Layout = () => {
                             <img src={unggahIcon} alt="Unggah" />
                         </Link>
 
-                        <Link to="/logout" className={`mobile-menu-item ${isActive("/logout") ? "active" : ""}`}>
+                        <button className="mobile-menu-item" style={{ background: "none", border: "none" }} onClick={handleLogout}>
                             <img src={logoutIcon} alt="logout Icon" />
-                        </Link>
+                        </button>
                     </div>
                 </div>
             ) : (
