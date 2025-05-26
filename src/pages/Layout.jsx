@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "../assets/styles/sidebar.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logoIcon from "../assets/img/logoIcon.png";
 import dashboardIcon from "../assets/img/dashboardIcon.png";
 import curhatIcon from "../assets/img/curhatIcon.png";
@@ -21,7 +21,6 @@ const Layout = () => {
     const isActive = (path) => location.pathname === path;
     const [collapsed, setCollapsed] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
-    const navigate = useNavigate();
 
     const toggleSidebar = () => setCollapsed(!collapsed);
 
@@ -38,7 +37,7 @@ const Layout = () => {
                 // Perform logout action here
                 authService.logout();
                 console.log(authService.isAuthenticated());
-                navigate("/login");
+                window.location.href = "/login";
             }
         });
     }
