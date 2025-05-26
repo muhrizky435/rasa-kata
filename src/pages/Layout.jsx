@@ -37,6 +37,7 @@ const Layout = () => {
             if (result.isConfirmed) {
                 // Perform logout action here
                 authService.logout();
+                console.log(authService.isAuthenticated());
                 navigate("/login");
             }
         });
