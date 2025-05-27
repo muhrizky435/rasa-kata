@@ -5,6 +5,7 @@ import Sidebar from "../components/Sidebar";
 import postService from "../services/postService";
 import { formatRelativeTime } from "../utils/timeUtils";
 import { Loading } from "../components/Loading";
+import authService from "../services/authService";
 
 const FeedDetail = () => {
   const [post, setPost] = useState({});
@@ -14,6 +15,7 @@ const FeedDetail = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const { id } = useParams();
+  const user = authService.getCurrentUser();
 
   // Check if the screen size is mobile
   useEffect(() => {
@@ -50,6 +52,7 @@ const FeedDetail = () => {
     try {
       const commentData = {
         content: comment,
+        anonymous_username: user ? user.anonymous_username : "Anonymous",
       };
 
       // Submit the new post through the API
@@ -100,7 +103,7 @@ const FeedDetail = () => {
                     <div className="mobile-post-header">
                       <div className="mobile-post-avatar">?</div>
                       <div>
-                        <div className="mobile-post-author">Anonymous</div>
+                        <div className="mobile-post-author">{comment.anonymous_username}</div>
                         <div className="mobile-post-time">{formatRelativeTime(comment.created_at)}</div>
                       </div>
                     </div>
@@ -168,7 +171,7 @@ const FeedDetail = () => {
                     <div className="post-header">
                       <div className="post-avatar">?</div>
                       <div>
-                        <div className="post-author">{post.anonymous_username}</div>
+                        <div className="post-author">{comment.anonymous_username}</div>
                         <div className="post-time">{formatRelativeTime(comment.created_at)}</div>
                       </div>
                     </div>
