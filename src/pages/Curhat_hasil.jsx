@@ -30,23 +30,31 @@ function CurhatHasil({ emotionData }) {
 
   return (
     <>
-    
+
       {/* Content Area */}
       <div className="content-area results-area">
         {/* Header */}
         {/* <div style={{marginBottom: '100px'}}>lorem ipsum</div> */}
         {/* Emotion Result */}
-        { emotionData.history && (
-          <div className="emotion-result">
-          <p>
-            Riwayat emosi {formatIndonesianDate(emotionData.createdAt)}
-          </p>
-        </div>
+        {emotionData.history && (
+          <>
+            <div className="emotion-result">
+              <p>
+                Riwayat emosi {formatIndonesianDate(emotionData.createdAt)}
+              </p>
+            </div>
+            <div className="emotion-result">
+              <p style={{ textAlign: 'center'}}>
+                Prompt:<br />
+                {emotionData.prompt}
+              </p>
+            </div>
+          </>
         )}
-        
+
         <div className="emotion-result">
           <p>
-            Kami mendeteksi bahwa saat ini anda sedang merasakan
+            Kami mendeteksi bahwa saat {emotionData.history ? ('itu') : ('ini')} anda sedang merasakan
             <span className="emotion-highlight">{` ${translateEmotionCode(emotionData.emotionCode)}`}</span>
           </p>
         </div>

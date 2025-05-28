@@ -28,6 +28,7 @@ function CurhatPage() {
       await emotionService.saveEmotion({
         user_id: user.id,
         emotion_code: response.data.emotionCode,
+        prompt: story
       });
 
       setIsResult(true);
@@ -50,7 +51,13 @@ function CurhatPage() {
 
         const recommendationResponse = await emotionService.getRecommendation(response.data.emotion_code);
 
-        const data = { history: true, feedbackRecommendation: recommendationResponse.data, emotionCode: response.data.emotion_code, createdAt: response.data.created_at };
+        const data = {
+          history: true,
+          feedbackRecommendation: recommendationResponse.data,
+          emotionCode: response.data.emotion_code,
+          createdAt: response.data.created_at,
+          prompt: response.data.prompt,
+        };
         setEmotionData(data);
         setIsResult(true);
         console.log("Fetched Emotion Data:", response.data);
