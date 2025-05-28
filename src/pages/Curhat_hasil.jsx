@@ -2,6 +2,7 @@ import "../assets/styles/curhat_hasil.css";
 import translateEmotionCode from "../utils/translateEmotionCode";
 import getVideoTitle from "../utils/getVideoTitle";
 import { useEffect, useState } from "react";
+import { formatIndonesianDate } from "../utils/timeUtils";
 
 function CurhatHasil({ emotionData }) {
   const [videoTitle, setVideoTitle] = useState([]);
@@ -29,9 +30,20 @@ function CurhatHasil({ emotionData }) {
 
   return (
     <>
+    
       {/* Content Area */}
       <div className="content-area results-area">
+        {/* Header */}
+        {/* <div style={{marginBottom: '100px'}}>lorem ipsum</div> */}
         {/* Emotion Result */}
+        { emotionData.history && (
+          <div className="emotion-result">
+          <p>
+            Riwayat emosi {formatIndonesianDate(emotionData.createdAt)}
+          </p>
+        </div>
+        )}
+        
         <div className="emotion-result">
           <p>
             Kami mendeteksi bahwa saat ini anda sedang merasakan

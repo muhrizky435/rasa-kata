@@ -103,8 +103,30 @@ export const smartDateFormat = (isoString) => {
   return formatDate(isoString);
 };
 
+export const formatIndonesianDate = (isoString) => {
+  const date = new Date(isoString);
+
+  const formatter = new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
+  const timeFormatter = new Intl.DateTimeFormat('id-ID', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
+
+  const datePart = formatter.format(date);  // e.g., "17 April 2025"
+  const timePart = timeFormatter.format(date);  // e.g., "10.00"
+
+  return `${datePart} pukul ${timePart.replace('.', ':')}`;
+}
+
 export default {
   formatRelativeTime,
   formatDate,
-  smartDateFormat
+  smartDateFormat,
+  formatIndonesianDate,
 };

@@ -28,13 +28,33 @@ const emotionService = {
 
   getEmotionData: async (userId) => {
     try {
-      const response = await axios.get(`/emotion/${userId}`);
+      const response = await axios.get(`/emotion/${userId}/user`);
       return response.data;
     } catch (error) {
       console.error("Error fetching emotion data:", error);
       throw error;
     }
   },
+
+  getEmotionById: async (emotionId) => {
+    try {
+      const response = await axios.get(`/emotion/${emotionId}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching emotion by ID:", error);
+      throw error;
+    }
+  },
+
+  getRecommendation: async (emotionCode) => {
+    try {
+      const response = await axios.get(`/feedback/${emotionCode}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching recommendation:", error);
+      throw error;
+    }
+  }
 };
 
 export default emotionService;

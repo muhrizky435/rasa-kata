@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Sidebar from "../components/Sidebar";
 import { Link } from "react-router-dom";
 import Icon from "../assets/img/Group 22.png";
 import "../assets/styles/dashboard.css";
@@ -238,7 +237,7 @@ const Dashboard = () => {
                         className="emotion-log-dot"
                         style={{ backgroundColor: translatedEmotion.color }}
                       ></div>
-                      <span className="emotion-log-name">{translatedEmotion.emotion}</span>
+                      <Link to={`/curhat/${emotion.id}`}><span className="emotion-log-name">{translatedEmotion.emotion}</span></Link>
                       <span className="emotion-log-time">{formatRelativeTime(emotion.created_at)}</span>
                     </div>
                   )

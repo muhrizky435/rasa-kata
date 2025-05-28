@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import Sidebar from '../components/Sidebar';
+import { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 import "../assets/styles/curhat.css";
 import ConcentricCircles from '../components/Circles';
 import Group from '../assets/img/Group.png';
@@ -15,6 +15,7 @@ function CurhatPage() {
   const [isResult, setIsResult] = useState(false);
   const [emotionData, setEmotionData] = useState(null);
   const user = authService.getCurrentUser();
+  const { id } = useParams();
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
@@ -23,7 +24,7 @@ function CurhatPage() {
       setIsLoading(true);
       const response = await emotionService.predictEmotion(story);
       setEmotionData(response.data);
-      
+
       await emotionService.saveEmotion({
         user_id: user.id,
         emotion_code: response.data.emotionCode,
@@ -38,10 +39,30 @@ function CurhatPage() {
     } finally {
       setIsLoading(false);
     }
-
-
-
   };
+
+  useEffect(() => {
+    if (!id) return;
+    const fetchEmotionData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await emotionService.getEmotionById(id);
+
+        const recommendationResponse = await emotionService.getRecommendation(response.data.emotion_code);
+
+        const data = { history: true, feedbackRecommendation: recommendationResponse.data, emotionCode: response.data.emotion_code, createdAt: response.data.created_at };
+        setEmotionData(data);
+        setIsResult(true);
+        console.log("Fetched Emotion Data:", response.data);
+      } catch (error) {
+        console.error("Error fetching emotion data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchEmotionData();
+  }, [id])
 
   return (
     <div className="app-container">
@@ -63,7 +84,7 @@ function CurhatPage() {
             </div>)}
 
         {/* Chat Input Box */}
-        <form className="input-container" onSubmit={handleSendMessage}>
+        {!id && (<form className="input-container" onSubmit={handleSendMessage}>
           <div className="input-wrapper">
             <div className="input-inner">
               <input
@@ -78,7 +99,8 @@ function CurhatPage() {
               </button>
             </div>
           </div>
-        </form>
+        </form>)}
+
       </main>
     </div>
   );

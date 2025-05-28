@@ -33,7 +33,7 @@ const Feed = () => {
         const myPosts = postsToBeSorted.filter((post) => post.anonymous_username === user.anonymous_username);
         setMyPosts(myPosts);
 
-        
+
         setError(null);
       } catch (err) {
         console.error("Error fetching posts:", err);
@@ -78,7 +78,9 @@ const Feed = () => {
   return (
     <div className="app-container feed-page">
       <main className="main-content">
-        <h2 className="page-title">Curhat Anonim</h2>
+        <header className="page-header">
+          <h2 className="page-title">Curhat Anonim</h2>
+        </header>
         {/* Post Input */}
         <div className="create-post-container">
           <form onSubmit={handlePostSubmit} className="create-post-form">
@@ -158,7 +160,7 @@ const Feed = () => {
                   </div>
                 ))}
               </div>
-              <div className="my-posts" style={{ paddingBottom: "80px"}}>
+              <div className="my-posts" style={{ paddingBottom: "80px" }}>
                 <h3>My posts</h3>
                 {myPosts.map((post) => (
                   <div key={post.id} className="post-card">

@@ -21,6 +21,8 @@ const Layout = () => {
     const isActive = (path) => location.pathname === path;
     const [collapsed, setCollapsed] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const user = authService.getCurrentUser();
+    const userName = user.name.split(" ")[0] || "User";
 
     const toggleSidebar = () => setCollapsed(!collapsed);
 
@@ -132,7 +134,7 @@ const Layout = () => {
                         </div>
                         {!collapsed && (
                             <div className="user-info">
-                                <p className="user-greeting">Hai, Hanifan!</p>
+                                <p className="user-greeting">Hai, {userName}!</p>
                             </div>
                         )}
                     </div>

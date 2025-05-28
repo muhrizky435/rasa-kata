@@ -67,6 +67,12 @@ const AuthenticatdRoutes = () => {
             }
           />
           <Route
+            path="/curhat/:id"
+            element={
+              <Curhat />
+            }
+          />
+          <Route
             path="/curhat_hasil"
             element={
               <Curhat_hasil />
