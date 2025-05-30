@@ -126,6 +126,17 @@
   border-top: 1px solid #f0f0f0;
   padding: 15px;
 }
+.logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  cursor: pointer;
+  gap: 5px;
+  transition: background-color 0.2s;
+  background: none;
+  border: none;
+}
 .logout-link {
   display: flex;
   align-items: center;

@@ -72,7 +72,6 @@ const FeedDetail = () => {
 
   if (isMobile) {
     return (<div>
-      <Sidebar />
       <main className="mobile-main-content">
 
         <h2 className="mobile-page-title">Curhatan {post.anonymous_username}</h2>

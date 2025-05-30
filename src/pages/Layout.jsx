@@ -19,12 +19,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Layout = () => {
     const location = useLocation();
     const isActive = (path) => location.pathname === path;
-    const [collapsed, setCollapsed] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const user = authService.getCurrentUser();
     const userName = user.name.split(" ")[0] || "User";
-
-    const toggleSidebar = () => setCollapsed(!collapsed);
 
     const handleLogout = () => {
         Swal.fire({
@@ -73,21 +70,12 @@ const Layout = () => {
                     </div>
                 </div>
             ) : (
-                <div className={`sidebar ${collapsed ? "collapsed" : ""}`}>
+                <div className={`sidebar`}>
                     <div className="logo-container">
                         <div className="logo">
                             <img src={logoIcon} alt="Logo" className="logo-icon" />
-                            {!collapsed && <span className="logo-text">RasaKata</span>}
+                             <span className="logo-text">RasaKata</span>
                         </div>
-                        <button className="collapse-button" onClick={toggleSidebar}>
-                            <div className="collapse-icon-wrapper">
-                                <img
-                                    src={collapsed ? RightIcon : LeftIcon}
-                                    alt="Toggle Sidebar"
-                                    className="collapse-icon"
-                                />
-                            </div>
-                        </button>
                     </div>
 
                     <div className="nav-menu">
@@ -132,17 +120,17 @@ const Layout = () => {
                         <div className="user-avatar">
                             <span>👤</span>
                         </div>
-                        {!collapsed && (
+                        
                             <div className="user-info">
                                 <p className="user-greeting">Hai, {userName}!</p>
                             </div>
-                        )}
+                        
                     </div>
 
                     <div className="logout-section">
-                        <button style={{ background: "none", border: "none" }} onClick={handleLogout}>
+                        <button className="logout-button" onClick={handleLogout}>
                             <img src={logoutIcon} alt="logoutIcon" className="logout-icon" />
-                            {!collapsed && <span>Logout</span>}
+                            <p>Logout</p>
                         </button>
                     </div>
                 </div>
