@@ -34,32 +34,50 @@ const Sidebar = () => {
         window.location.href = "/login";
       }
     });
-  }
+  };
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   if (isMobile) {
     return (
       <div className="mobile-bottom-nav">
         <div className="mobile-nav-menu">
-          <Link to="/dashboard" className={`mobile-menu-item ${isActive("/dashboard") ? "active" : ""}`}>
+          <Link
+            to="/dashboard"
+            className={`mobile-menu-item ${
+              isActive("/dashboard") ? "active" : ""
+            }`}
+          >
             <img src={dashboardIcon} alt="Dashboard" />
           </Link>
 
-          <Link to="/curhat" className={`mobile-menu-item ${isActive("/curhat") ? "active" : ""}`}>
+          <Link
+            to="/curhat"
+            className={`mobile-menu-item ${
+              isActive("/curhat") ? "active" : ""
+            }`}
+          >
             <img src={curhatIcon} alt="Curhat" />
           </Link>
 
-          <Link to="/feed" className={`mobile-menu-item ${isActive("/feed") ? "active" : ""}`}>
+          <Link
+            to="/feed"
+            className={`mobile-menu-item ${isActive("/feed") ? "active" : ""}`}
+          >
             <img src={unggahIcon} alt="Unggah" />
           </Link>
 
-          <Link to="/logout" className={`mobile-menu-item ${isActive("/logout") ? "active" : ""}`}>
+          <Link
+            to="/logout"
+            className={`mobile-menu-item ${
+              isActive("/logout") ? "active" : ""
+            }`}
+          >
             <img src={logoutIcon} alt="logout Icon" />
           </Link>
         </div>
@@ -124,18 +142,25 @@ const Sidebar = () => {
       </div>
 
       <div className="user-section">
-        <div className="user-avatar">
-          <span>👤</span>
+      <Link
+        to="/profile"
+        className={`user-avatar menu-link ${isActive("/profile") ? "active" : ""}`}
+      >
+        <span role="img" aria-label="User Icon">👤</span>
+      </Link>
+
+      {!collapsed && (
+        <div className="user-info">
+          <p className="user-greeting">Hai, Hanifan!</p>
         </div>
-        {!collapsed && (
-          <div className="user-info">
-            <p className="user-greeting">Hai, Hanifan!</p>
-          </div>
-        )}
-      </div>
+      )}
+    </div>
 
       <div className="logout-section">
-        <button style={{ background: "none", border: "none" }} onClick={handleLogout}>
+        <button
+          style={{ background: "none", border: "none" }}
+          onClick={handleLogout}
+        >
           <img src={logoutIcon} alt="logoutIcon" className="logout-icon" />
           {!collapsed && <span>Logout</span>}
         </button>

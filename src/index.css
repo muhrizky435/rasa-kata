@@ -12,7 +12,8 @@ a {
 /* MAIN CONTENT STYLING */
 .main-content {
   flex: 1;
-  padding: 24px;
+  margin-left: 220px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
   background-color: #f9fafb;
@@ -35,4 +36,10 @@ a {
   max-width: 768px;
   margin: 0 auto;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
 }

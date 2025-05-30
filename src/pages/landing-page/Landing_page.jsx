@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "../../assets/styles/landing_page.css"; // Sesuaikan path dan nama file CSS
 import logoImg from "../../assets/img/logo-rasa-kata.png";
 import featureDiagram from "../../assets/img/img_group_8.svg";
@@ -25,6 +27,17 @@ const LandingPage = () => {
     },
   ]);
   const [newPostText, setNewPostText] = useState("");
+
+  // Inisialisasi AOS
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      duration: 800,
+      easing: "ease-in-out",
+    });
+    
+      AOS.refresh();
+  }, []);
 
   const toggleReplies = (postId) => {
     setPosts((prevPosts) =>
@@ -56,13 +69,17 @@ const LandingPage = () => {
         Skip to content
       </a>
 
-      <header>
+      <header data-aos="fade-down">
         <div className="content-wrapper">
-          <div className="logo">
+          <div className="logo" data-aos="fade-right" data-aos-delay="200">
             <img src={logoImg} alt="Rasa Kata Logo" />
           </div>
           <nav>
-            <div className="nav-links">
+            <div
+              className="nav-links"
+              data-aos="fade-left"
+              data-aos-delay="300"
+            >
               <a href="#home" aria-label="Go to Home">
                 Home
               </a>
@@ -73,7 +90,11 @@ const LandingPage = () => {
                 Feature
               </a>
             </div>
-            <div className="auth-buttons">
+            <div
+              className="auth-buttons"
+              data-aos="fade-left"
+              data-aos-delay="400"
+            >
               <Link to="/login">
                 <button className="btn btn-primary" aria-label="Login">
                   Login
@@ -89,22 +110,58 @@ const LandingPage = () => {
         </div>
       </header>
 
-      <section className="hero" id="main-content">
+      <section className="hero" id="main-content" data-aos="zoom-in">
         <div className="content-wrapper">
-          <div className="emotion-circle">
-            <div className="feature-diagram-container">
+          <div
+            className="emotion-circle"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div
+              className="feature-diagram-container"
+              data-aos="zoom-in"
+              data-aos-delay="400"
+            >
               <img
                 src={featureDiagram}
                 alt="Feature Diagram"
                 className="feature-diagram"
               />
-              <div className="feature-tag tag-detection">Deteksi Emosi</div>
-              <div className="feature-tag tag-visualization">
+              <div
+                className="feature-tag tag-detection"
+                data-aos="fade-right"
+                data-aos-delay="600"
+              >
+                Deteksi Emosi
+              </div>
+              <div
+                className="feature-tag tag-visualization"
+                data-aos="fade-left"
+                data-aos-delay="700"
+              >
                 Visualisasi Emosi
               </div>
-              <div className="feature-tag tag-tracking">Lacak Emosi Harian</div>
-              <div className="feature-tag tag-feedback">Feedback Video</div>
-              <div className="feature-tag tag-posting">Posting Anonim</div>
+              <div
+                className="feature-tag tag-tracking"
+                data-aos="fade-right"
+                data-aos-delay="800"
+              >
+                Lacak Emosi Harian
+              </div>
+              <div
+                className="feature-tag tag-feedback"
+                data-aos="fade-left"
+                data-aos-delay="900"
+              >
+                Feedback Video
+              </div>
+              <div
+                className="feature-tag tag-posting"
+                data-aos="fade-up"
+                data-aos-delay="1000"
+              >
+                Posting Anonim
+              </div>
             </div>
           </div>
           <h1 className="hero-title">
@@ -114,18 +171,32 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="features" id="features">
+      <section className="features" id="features" data-aos="fade-up">
         <div className="content-wrapper">
-          <img src={deteksiIcon} alt="Icon deteksi" />
-          <h2 className="feature-title">Deteksi Emosi Otomatis</h2>
-          <p className="feature-description">
+          <img src={deteksiIcon} alt="Icon deteksi" data-aos="zoom-in" />
+          <h2
+            className="feature-title"
+            data-aos="fade-right"
+            data-aos-delay="200"
+          >
+            Deteksi Emosi Otomatis
+          </h2>
+          <p
+            className="feature-description"
+            data-aos="fade-left"
+            data-aos-delay="300"
+          >
             Rasakan kelegaan dengan sistem kami yang menganalisis isi jurnal
             atau percakapanmu secara real-time, dan mendeteksi emosi yang sedang
             kamu alami. Tanpa perlu repot menandai sendiri — biarkan AI kami
             membantumu memahami dirimu.
           </p>
           <div className="feature-cards">
-            <div className="feature-card feature-card-left">
+            <div
+              className="feature-card feature-card-left"
+              data-aos="fade-right"
+              data-aos-delay="400"
+            >
               <img
                 src={journalIcon}
                 alt="Journal Icon"
@@ -139,8 +210,16 @@ const LandingPage = () => {
                 pikiranmu—tanpa sensor, tanpa takut dihakimi.
               </p>
             </div>
-            <div className="feature-divider"></div>
-            <div className="feature-card feature-card-right">
+            <div
+              className="feature-divider"
+              data-aos="zoom-in"
+              data-aos-delay="450"
+            ></div>
+            <div
+              className="feature-card feature-card-right"
+              data-aos="fade-left"
+              data-aos-delay="500"
+            >
               <img src={aiIcon} alt="AI Icon" className="feature-card-icon" />
               <h3 className="feature-card-title">
                 Biarkan AI Mendeteksi Emosimu
@@ -154,30 +233,52 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="emotion-tracking">
-        <div className="content-wrapper card">
+      <section className="emotion-tracking" data-aos="fade-up">
+        <div
+          className="content-wrapper card"
+          data-aos="zoom-in"
+          data-aos-delay="200"
+        >
           <img
             src={trackingGraph}
             alt="Emotion Tracking Graph"
             className="tracking-graph"
           />
-          <div className="tracking-content">
+          <div
+            className="tracking-content"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
             <h2 className="tracking-title">Pantau Perkembangan Emosimu</h2>
           </div>
         </div>
       </section>
 
-      <section className="anonymous-forum">
+      <section className="anonymous-forum" data-aos="fade-up">
         <div className="content-wrapper">
-          <h2 className="forum-title">Halaman Anonim untuk Berbagi Cerita</h2>
-          <p className="forum-description">
+          <h2
+            className="forum-title"
+            data-aos="fade-right"
+            data-aos-delay="200"
+          >
+            Halaman Anonim untuk Berbagi Cerita
+          </h2>
+          <p
+            className="forum-description"
+            data-aos="fade-left"
+            data-aos-delay="300"
+          >
             Ingin mencurahkan isi hati tanpa takut dihakimi? Bagikan ceritamu
             secara anonim dan temukan kekuatan dari kisah orang lain. Scroll dan
             temukan bahwa kamu tidak sendirian — semua orang sedang berjuang
             dengan caranya masing-masing.
           </p>
 
-          <div className="forum-container">
+          <div
+            className="forum-container"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
             <div className="post-input">
               <input
                 type="text"
@@ -235,17 +336,32 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="cta-section">
-        <div className="content-wrapper">
-          <div className="cta-logo">
+      <section className="cta-section" data-aos="fade-up">
+        <div
+          className="content-wrapper"
+          data-aos="zoom-in"
+          data-aos-delay="200"
+        >
+          <div className="cta-logo" data-aos="fade-right" data-aos-delay="300">
             <img src={logoImg} alt="Rasa Kata Logo" />
           </div>
-          <h2 className="cta-title">Mulai Perjalanan Emosionalmu Hari Ini</h2>
-          <p className="cta-description">
+          <h2 className="cta-title" data-aos="fade-up" data-aos-delay="400">
+            Mulai Perjalanan Emosionalmu Hari Ini
+          </h2>
+          <p
+            className="cta-description"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
             Jangan biarkan stres mendominasi hidupmu. Tulis, berbagi, dan
             temukan dukungan secara personal maupun komunitas.
           </p>
-          <button className="cta-button" aria-label="Start now">
+          <button
+            className="cta-button"
+            aria-label="Start now"
+            data-aos="zoom-in"
+            data-aos-delay="600"
+          >
             <span className="cta-button-text">Mulai Sekarang</span>
             <img src={arrowWhite} alt="Arrow" />
           </button>
