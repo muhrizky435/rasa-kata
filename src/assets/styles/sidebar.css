@@ -1,6 +1,6 @@
 
 .sidebar {
-  width: 250px;
+  width: 220px;
   background-color: #fff;
   position: fixed;
   display: flex;
@@ -112,6 +112,16 @@
   align-items: center;
   justify-content: center;
   font-size: 16px;
+  cursor: pointer;
+}
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.user-avatar:hover {
+  background-color: #df93ea;
 }
 .user-info {
   margin-left: 12px;
@@ -121,6 +131,7 @@
   font-size: 14px;
   font-weight: 500;
   color: #333;
+  cursor: pointer;
 }
 .logout-section {
   border-top: 1px solid #f0f0f0;
@@ -234,11 +245,11 @@
 /* Add these to improve desktop collapsing */
 @media (min-width: 769px) {
   .sidebar.collapsed {
-    width: 80px;
+    width: 150px;
   }
   
   .sidebar.collapsed:hover {
-    width: 250px; /* Optional: Expand on hover */
+    width: 160px; /* Optional: Expand on hover */
     z-index: 1001;
   }
   
