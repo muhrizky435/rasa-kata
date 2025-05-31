@@ -33,7 +33,7 @@
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #eeeded 0%, #fefefe 100%);
   min-height: 100vh;
 }
 
@@ -87,10 +87,8 @@ body {
 
 /* Main Content */
 .profile-content {  
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 2rem;
-  align-items: start;
+  display: flex;
+  justify-content: center;
 }
 
 /* Profile Card */
@@ -99,6 +97,7 @@ body {
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-lg);
   overflow: hidden;
+  width: 80%;
 }
 
 .profile-avatar {

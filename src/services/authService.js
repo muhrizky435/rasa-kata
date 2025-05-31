@@ -61,6 +61,29 @@ const authService = {
     }
   },
 
+  updateUser: async (userData, userId) => {
+    try {
+      const token = localStorage.getItem(TOKEN_KEY);
+      if (!token) throw new Error("User not authenticated");
+
+      // Set token in headers for this request
+      authClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+      const response = await authClient.put(`/user/${userId}`, userData);
+      const updatedUser = response.data.data.user;
+      console.log(updatedUser)
+      
+
+      // Update stored user data
+      localStorage.setItem(USER_KEY, JSON.stringify(updatedUser));
+
+      return updatedUser;
+    } catch (error) {
+      console.error("Update user error:", error);
+      throw error.response?.data || error;
+    }
+  },
+
   /**
    * Logout user and clear stored authentication data
    */

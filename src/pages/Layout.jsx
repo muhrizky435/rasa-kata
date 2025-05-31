@@ -6,10 +6,9 @@ import dashboardIcon from "../assets/img/dashboardIcon.png";
 import curhatIcon from "../assets/img/curhatIcon.png";
 import unggahIcon from "../assets/img/unggahIcon.png";
 import logoutIcon from "../assets/img/logout.png";
-import LeftIcon from "../assets/img/leftIcon.png";
-import RightIcon from "../assets/img/rightIcon.png";
 import Swal from "sweetalert2";
 import authService from "../services/authService";
+import userIcon from "../assets/img/user.png"; // Placeholder for user avatar
 
 import { Outlet } from "react-router-dom";
 
@@ -24,6 +23,7 @@ const Layout = () => {
     const userName = user.name.split(" ")[0] || "User";
 
   const handleLogout = () => {
+    document.body.style.overflow = "hidden"; // Prevent scrolling during the alert
     Swal.fire({
       title: "Logout",
       text: "Are you sure you want to logout?",
@@ -38,7 +38,9 @@ const Layout = () => {
         console.log(authService.isAuthenticated());
         window.location.href = "/login";
       }
-    });
+    }).finally(() => {
+      document.body.style.overflow = "auto"; // Re-enable scrolling after the alert
+    })
   };
 
   useEffect(() => {
@@ -77,6 +79,14 @@ const Layout = () => {
               }`}
             >
               <img src={unggahIcon} alt="Unggah" />
+            </Link>
+            <Link
+              to="/profile"
+              className={`mobile-menu-item ${
+                isActive("/profile") ? "active" : ""
+              }`}
+            >
+              <img src={userIcon} alt="Unggah" />
             </Link>
 
                         <button className="mobile-menu-item" style={{ background: "none", border: "none" }} onClick={handleLogout}>
@@ -138,7 +148,7 @@ const Layout = () => {
               to="/profile"
               className={`user-avatar ${isActive("/profile") ? "active" : ""}`}>
               <img
-                src="" alt="User Avatar" className="avatar-img"/>
+                src={userIcon} alt="User Avatar" className="avatar-img" width={50}/>
             </Link>
 
             

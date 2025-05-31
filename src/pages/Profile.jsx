@@ -1,34 +1,35 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../assets/styles/profile.css";
+import authService from "../services/authService"; // Assuming you have an authService to get user data
+import Swal from "sweetalert2";
 
 const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState({
-    username: "",
+    name: "",
     email: "",
-    password: ""
+    anonymous_username: ""
   });
 
   const [formData, setFormData] = useState({ ...profileData });
+  const user = authService.getCurrentUser();
 
   useEffect(() => {
     // Dummy data
     const fetchProfile = async () => {
-      const dummyData = {
-        username: "user123",
-        email: "user@example.com",
-        password: "********"
+
+      const userData = {
+        name: user.name,
+        email: user.email,
+        anonymous_username: user.anonymous_username
       };
 
-      // Simulasi delay
-      setTimeout(() => {
-        setProfileData(dummyData);
-        setFormData(dummyData);
-      }, 500);
+      setProfileData(userData);
+      setFormData(userData);
     };
 
     fetchProfile();
-  }, []);
+  }, [user.anonymous_username, user.email, user.name]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -47,6 +48,19 @@ const Profile = () => {
     }
   };
 
+  const handleSubmit = async () => {
+    console.log("Profile updated:", formData);
+
+    await authService.updateUser(formData, user.id);
+    
+    Swal.fire({
+      icon: 'success',
+      title: 'Berhasil memperbarui Profil',
+      text: 'Profil Anda telah diperbarui.',
+      confirmButtonText: 'OK'
+    });
+  }
+
   const handleCancel = () => {
     setFormData({ ...profileData });
     setIsEditing(false);
@@ -60,24 +74,47 @@ const Profile = () => {
             <div className="profile-avatar">
               <div className="avatar-circle">
                 <span className="avatar-initial">
-                  {formData.username.charAt(0).toUpperCase()}
+                  {formData.name.charAt(0).toUpperCase()}
                 </span>
               </div>
-              <h2 className="profile-name">{formData.username}</h2>
+              <h2 className="profile-name">{formData.name}</h2>
               <p className="profile-subtitle">Kelola informasi profil Anda</p>
             </div>
 
             <form className="profile-form">
               <div className="form-group">
-                <label htmlFor="username" className="form-label">
-                  Username
+                <label htmlFor="name" className="form-label">
+                  Name
                 </label>
                 <div className="input-wrapper">
                   <input
                     type="text"
-                    id="username"
-                    name="username"
-                    value={formData.username}
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    disabled={!isEditing}
+                    className={`form-input ${!isEditing ? 'disabled' : ''}`}
+                    placeholder="Masukkan username"
+                  />
+                  <span className="input-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+              <div className="form-group">
+                <label htmlFor="anonymous_username" className="form-label">
+                  Anonymous Username
+                </label>
+                <div className="input-wrapper">
+                  <input
+                    type="text"
+                    id="anonymous_username"
+                    name="anonymous_username"
+                    value={formData.anonymous_username}
                     onChange={handleInputChange}
                     disabled={!isEditing}
                     className={`form-input ${!isEditing ? 'disabled' : ''}`}
@@ -92,7 +129,7 @@ const Profile = () => {
                 </div>
               </div>
 
-            {/* Email */}
+              {/* Email */}
               <div className="form-group">
                 <label htmlFor="email" className="form-label">
                   Email
@@ -118,33 +155,9 @@ const Profile = () => {
               </div>
 
 
-            {/* Password */}
-              <div className="form-group">
-                <label htmlFor="password" className="form-label">
-                  Password
-                </label>
-                <div className="input-wrapper">
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    disabled={!isEditing}
-                    className={`form-input ${!isEditing ? 'disabled' : ''}`}
-                    placeholder="Masukkan password"
-                  />
-                  <span className="input-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                      <circle cx="12" cy="16" r="1"></circle>
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
 
-            {/* form aksi */}
+
+              {/* form aksi */}
               <div className="form-actions">
                 {isEditing ? (
                   <div className="action-buttons">
@@ -157,7 +170,7 @@ const Profile = () => {
                     </button>
                     <button
                       type="button"
-                      onClick={handleEdit}
+                      onClick={handleSubmit}
                       className="btn btn-save"
                     >
                       <span>Simpan</span>
@@ -181,67 +194,6 @@ const Profile = () => {
                 )}
               </div>
             </form>
-          </div>
-
-        
-        {/* tambahan */}
-          <div className="profile-sidebar">
-            <div className="sidebar-card">
-              <h3 className="sidebar-title">Keamanan Akun</h3>
-              <div className="security-item">
-                <div className="security-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                  </svg>
-                </div>
-                <div className="security-content">
-                  <h4>Verifikasi Email</h4>
-                  <p>Email Anda telah diverifikasi</p>
-                </div>
-                <div className="security-status verified">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="20,6 9,17 4,12"></polyline>
-                  </svg>
-                </div>
-              </div>
-              
-              <div className="security-item">
-                <div className="security-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <circle cx="12" cy="16" r="1"></circle>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                  </svg>
-                </div>
-                <div className="security-content">
-                  <h4>Password Kuat</h4>
-                  <p>Gunakan kombinasi huruf, angka, dan simbol</p>
-                </div>
-                <div className="security-status warning">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <triangle points="7.86 2 16.14 2 22 16 2 16 7.86 2"></triangle>
-                    <line x1="12" y1="9" x2="12" y2="13"></line>
-                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            <div className="sidebar-card">
-              <h3 className="sidebar-title">Aktivitas Terakhir</h3>
-              <div className="activity-item">
-                <div className="activity-time">2 jam lalu</div>
-                <div className="activity-text">Login dari perangkat baru</div>
-              </div>
-              <div className="activity-item">
-                <div className="activity-time">1 hari lalu</div>
-                <div className="activity-text">Update profil</div>
-              </div>
-              <div className="activity-item">
-                <div className="activity-time">3 hari lalu</div>
-                <div className="activity-text">Ganti password</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
