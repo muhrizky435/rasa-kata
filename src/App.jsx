@@ -15,6 +15,7 @@ import { useAuth } from './contexts/AuthContext'
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from 'framer-motion';
 import Layout from './pages/Layout'
+import './sw.js';
 
 // Protected route component
 const ProtectedRoute = () => {
