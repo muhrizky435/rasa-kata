@@ -35,8 +35,8 @@ const LandingPage = () => {
       duration: 800,
       easing: "ease-in-out",
     });
-    
-      AOS.refresh();
+
+    AOS.refresh();
   }, []);
 
   const toggleReplies = (postId) => {
@@ -69,16 +69,14 @@ const LandingPage = () => {
         Skip to content
       </a>
 
-      <header data-aos="fade-down">
+      <header>
         <div className="content-wrapper">
-          <div className="logo" data-aos="fade-right" data-aos-delay="200">
+          <div className="logo">
             <img src={logoImg} alt="Rasa Kata Logo" />
           </div>
           <nav>
             <div
               className="nav-links"
-              data-aos="fade-left"
-              data-aos-delay="300"
             >
               <a href="#home" aria-label="Go to Home">
                 Home
@@ -90,11 +88,7 @@ const LandingPage = () => {
                 Feature
               </a>
             </div>
-            <div
-              className="auth-buttons"
-              data-aos="fade-left"
-              data-aos-delay="400"
-            >
+            <div className="auth-buttons">
               <Link to="/login">
                 <button className="btn btn-primary" aria-label="Login">
                   Login
@@ -110,7 +104,7 @@ const LandingPage = () => {
         </div>
       </header>
 
-      <section className="hero" id="main-content" data-aos="zoom-in">
+      <section className="hero" id="main-content">
         <div className="content-wrapper">
           <div
             className="emotion-circle"
@@ -166,20 +160,20 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="features" id="features" data-aos="fade-up">
+      <section className="features" id="features" >
         <div className="content-wrapper">
-          <img src={deteksiIcon} alt="Icon deteksi" data-aos="zoom-in" />
+          <img src={deteksiIcon} alt="Icon deteksi" data-aos="fade-in" />
           <h2
             className="feature-title"
-            data-aos="fade-right"
+            data-aos="fade-up"
             data-aos-delay="200"
           >
             Deteksi Emosi Otomatis
           </h2>
           <p
             className="feature-description"
-            data-aos="fade-left"
-            data-aos-delay="300"
+            data-aos="zoom-in"
+            data-aos-delay="500"
           >
             Rasakan kelegaan dengan sistem kami yang menganalisis isi jurnal
             atau percakapanmu secara real-time, dan mendeteksi emosi yang sedang
@@ -189,37 +183,36 @@ const LandingPage = () => {
           <div className="feature-cards">
             <div
               className="feature-card feature-card-left"
-              data-aos="fade-right"
-              data-aos-delay="400"
             >
               <img
                 src={journalIcon}
                 alt="Journal Icon"
                 className="feature-card-icon"
+                data-aos="fade-in"
               />
-              <h3 className="feature-card-title">
+              <h3 className="feature-card-title" data-aos="fade-up"
+                data-aos-delay="200">
                 Tulis Jurnalmu dengan Bebas
               </h3>
-              <p className="feature-card-description">
+              <p className="feature-card-description" data-aos="zoom-in"
+                data-aos-delay="500">
                 Ungkapkan perasaanmu, ceritakan hari-harimu, atau curahkan isi
                 pikiranmu—tanpa sensor, tanpa takut dihakimi.
               </p>
             </div>
             <div
               className="feature-divider"
-              data-aos="zoom-in"
-              data-aos-delay="450"
             ></div>
             <div
               className="feature-card feature-card-right"
-              data-aos="fade-left"
-              data-aos-delay="500"
             >
-              <img src={aiIcon} alt="AI Icon" className="feature-card-icon" />
-              <h3 className="feature-card-title">
+              <img src={aiIcon} alt="AI Icon" className="feature-card-icon" data-aos="fade-in" />
+              <h3 className="feature-card-title" data-aos="fade-up"
+                data-aos-delay="200">
                 Biarkan AI Mendeteksi Emosimu
               </h3>
-              <p className="feature-card-description">
+              <p className="feature-card-description" data-aos="zoom-in"
+                data-aos-delay="500">
                 Dalam hitungan detik, sistem kami akan membaca dan memahami
                 tulisanmu.
               </p>
@@ -228,41 +221,35 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="emotion-tracking" data-aos="fade-up">
+      <section className="emotion-tracking" >
         <div
           className="content-wrapper card"
-          data-aos="zoom-in"
-          data-aos-delay="200"
         >
           <img
             src={trackingGraph}
             alt="Emotion Tracking Graph"
             className="tracking-graph"
+            data-aos="slide-right"
           />
           <div
             className="tracking-content"
-            data-aos="fade-up"
-            data-aos-delay="300"
           >
-            <h2 className="tracking-title">Pantau Perkembangan Emosimu</h2>
+            <h2 className="tracking-title" data-aos="slide-left">Pantau Perkembangan Emosimu</h2>
           </div>
         </div>
       </section>
 
-      <section className="anonymous-forum" data-aos="fade-up">
+      <section className="anonymous-forum">
         <div className="content-wrapper">
           <h2
             className="forum-title"
-            data-aos="fade-right"
+            data-aos="fade-up"
             data-aos-delay="200"
           >
             Halaman Anonim untuk Berbagi Cerita
           </h2>
           <p
-            className="forum-description"
-            data-aos="fade-left"
-            data-aos-delay="300"
-          >
+            className="forum-description" data-aos="zoom-in" data-aos-delay="500">
             Ingin mencurahkan isi hati tanpa takut dihakimi? Bagikan ceritamu
             secara anonim dan temukan kekuatan dari kisah orang lain. Scroll dan
             temukan bahwa kamu tidak sendirian — semua orang sedang berjuang
@@ -270,10 +257,7 @@ const LandingPage = () => {
           </p>
 
           <div
-            className="forum-container"
-            data-aos="fade-up"
-            data-aos-delay="400"
-          >
+            className="forum-container" data-aos="fade-up">
             <div className="post-input">
               <input
                 type="text"
@@ -284,13 +268,16 @@ const LandingPage = () => {
                 onKeyDown={(e) => {
                   if (e.key === "Enter") handlePostSubmit();
                 }}
+                data-aos="slide-right"
+                data-aos-delay="500"
               />
-              <button onClick={handlePostSubmit} aria-label="Upload post">
+              <button onClick={handlePostSubmit} aria-label="Upload post" data-aos="slide-left"
+                data-aos-delay="500">
                 Unggah
               </button>
             </div>
 
-            <div className="forum-posts">
+            <div className="forum-posts" data-aos="zoom-in" data-aos-delay="1200">
               {posts.map((post) => (
                 <div key={post.id}>
                   <div className="post">
@@ -331,31 +318,23 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="cta-section" data-aos="fade-up">
+      <section className="cta-section">
         <div
           className="content-wrapper"
-          data-aos="zoom-in"
-          data-aos-delay="200"
         >
-          <div className="cta-logo" data-aos="fade-right" data-aos-delay="300">
+          <div className="cta-logo">
             <img src={logoImg} alt="Rasa Kata Logo" />
           </div>
-          <h2 className="cta-title" data-aos="fade-up" data-aos-delay="400">
+          <h2 className="cta-title" >
             Mulai Perjalanan Emosionalmu Hari Ini
           </h2>
-          <p
-            className="cta-description"
-            data-aos="fade-up"
-            data-aos-delay="500"
-          >
+          <p className="cta-description">
             Jangan biarkan stres mendominasi hidupmu. Tulis, berbagi, dan
             temukan dukungan secara personal maupun komunitas.
           </p>
           <button
             className="cta-button"
             aria-label="Start now"
-            data-aos="zoom-in"
-            data-aos-delay="600"
           >
             <span className="cta-button-text">Mulai Sekarang</span>
             <img src={arrowWhite} alt="Arrow" />
