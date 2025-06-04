@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -130,41 +130,36 @@ const LandingPage = () => {
               <div
                 className="feature-tag tag-detection"
                 data-aos="fade-right"
-                data-aos-delay="600"
-              >
+                data-aos-delay="600">
                 Deteksi Emosi
               </div>
               <div
                 className="feature-tag tag-visualization"
                 data-aos="fade-left"
-                data-aos-delay="700"
-              >
+                data-aos-delay="700">
                 Visualisasi Emosi
               </div>
               <div
                 className="feature-tag tag-tracking"
                 data-aos="fade-right"
-                data-aos-delay="800"
-              >
+                data-aos-delay="800">
                 Lacak Emosi Harian
               </div>
               <div
                 className="feature-tag tag-feedback"
                 data-aos="fade-left"
-                data-aos-delay="900"
-              >
+                data-aos-delay="900">
                 Feedback Video
               </div>
               <div
                 className="feature-tag tag-posting"
                 data-aos="fade-up"
-                data-aos-delay="1000"
-              >
+                data-aos-delay="1000">
                 Posting Anonim
               </div>
             </div>
           </div>
-          <h1 className="hero-title">
+          <h1 className="hero-title" data-aos="fade-up" data-aos-delay="300">
             Kenali & Kelola Emosimu dengan Lebih Baik dengan{" "}
             <span>AI Rasa Kata</span>
           </h1>
